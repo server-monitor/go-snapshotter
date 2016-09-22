@@ -1,0 +1,61 @@
+
+#app {
+  margin: 10px;
+}
+
+#app .picture_container {
+  overflow: hidden;
+  height: 380px;
+  width: auto;
+
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+#app .picture_container img {
+  opacity: 0.6;
+  // border: 1px solid blue;
+}
+
+.control_box {
+  position: absolute;
+  top: 6%;
+  width: 100%;
+  z-index: 2;
+}
+
+.control_box button {
+  // border: 2px broken red;
+  color: red;
+  border-radius: 14px;
+  margin-right: 35px;
+  float: right;
+}
+
+.meta_data_box {
+  position: absolute;
+  // top: 65%;
+  bottom: 5%;
+  width: 100%;
+  z-index: 2;
+}
+
+.meta_data_box span {
+  // font-size: 16px;
+
+  padding: 4px 4px;
+  display: block;
+
+  margin: 0 auto;
+  margin-right: 28px;
+  margin-bottom: 2px;
+
+  color: white;
+  background-color: rgba(10, 10, 10, 0.8);
+  // background-color: red;
+  // background-color: rgba(126, 24, 128, 0.85);
+  // background-color: rgba(255,0,0,0.65);
+
+  // color: black;
+  // background-color: rgba(250,250,250,0.8);
+}

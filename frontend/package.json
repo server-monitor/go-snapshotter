@@ -1,0 +1,58 @@
+{
+  "name": "progress_tracker",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "nock": "^8.0.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
+    "superagent": "^2.2.0",
+    "webpack": "^1.13.2"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "airbnb",
+      "react"
+    ]
+  },
+  "devDependencies": {
+    "babel-preset-airbnb": "^2.0.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-register": "^6.14.0",
+    "chai": "^3.5.0",
+    "cheerio": "^0.22.0",
+    "enzyme": "^2.4.1",
+    "inflection": "^1.10.0",
+    "jsdom": "^9.5.0",
+    "jsx-to-string": "^0.2.16",
+    "mocha": "^3.0.2",
+    "react-addons-test-utils": "^15.3.1",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
+    "superagent-mock": "^1.12.0",
+    "webpack-dev-server": "^1.15.2"
+  },
+  "main": "webpack.config.js",
+  "scripts": {
+    "one": "mocha --growl --require babel-register --require spec/helpers/utilities.js spec/helpers/jsdom.js",
+    "start": "webpack-dev-server",
+    "test:once": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --growl --require babel-register --require spec/helpers/utilities.js spec/helpers/jsdom.js",
+    "test": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --watch --growl --require babel-register --require spec/helpers/utilities.js spec/helpers/jsdom.js",
+    "dev:hot": "webpack-dev-server --progress --watch --display-error-details --display-cached",
+    "compile": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": "https://github.com/server-monitor/__APP_NAME__",
+  "description": "..."
+}
