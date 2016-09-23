@@ -1,6 +1,16 @@
 
 // ... HACKs and other nasty stuff.
 
+if (typeof Window !== 'undefined') {
+  if (typeof window !== 'undefined') {
+
+    // ... https://stackoverflow.com/questions/33783620/disable-chrome-react-devtools-for-production
+    window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = function () {};
+  } else {
+    throw Error('"Window" (upper-case) is defined but window (lower-case) is not');
+  }
+}
+
 function info(msg, titleArg = '') {
   var title = 'DEBUG';
 
