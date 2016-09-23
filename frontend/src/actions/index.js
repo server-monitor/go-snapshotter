@@ -1,5 +1,12 @@
+
+import * as Immutable from 'immutable';
+
 import Client from '../external_data_access/client';
-import { SET_SNAPSHOTS, REMOVE_SNAPSHOT } from './type';
+import {
+  REQUEST_SNAPSHOTS, RECEIVE_SNAPSHOTS,
+  REMOVE_SNAPSHOT,
+  SET_SNAPSHOTS,
+} from './type';
 
 export function getSnapshots() {
   return dispatch => Client.getSnapshots(
@@ -10,7 +17,7 @@ export function getSnapshots() {
 export function setSnapshots(response) {
   return {
     type: SET_SNAPSHOTS,
-    payload: response,
+    payload: Immutable.List(response),
   };
 }
 
@@ -20,3 +27,26 @@ export function removeSnapshot(id) {
     payload: id,
   };
 }
+
+// ...
+export function requestSnapshots() {
+  return {
+    type: REQUEST_SNAPSHOTS,
+  };
+}
+
+export function receiveSnapshots(response) {
+  return {
+    type: RECEIVE_SNAPSHOTS,
+    payload: snapshots,
+    receivedAt: Date.now(),
+  };
+}
+
+// // TODO
+// export function requestError(error) {
+//   return {
+//     type: REQUEST_ERROR,
+//     error,
+//   };
+// }
