@@ -1,6 +1,4 @@
 
-// window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = function () {};
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
