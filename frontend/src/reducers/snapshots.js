@@ -15,29 +15,16 @@ import {
 //   }
 // };
 
-// const snapshots = (state = [], action) => {
-//   switch (action.type) {
-//     case REQUEST_SNAPSHOTS:
-//       return state;
-//     case REMOVE_SNAPSHOT:
-//       return state.filter((snapshot) => snapshot.id !== action.payload);
-//     case SET_SNAPSHOTS:
-//       return action.payload;
-//     default:
-//       return state;
-//   }
-// };
-
 const snapshots = (state = Immutable.List(), action) => {
+  info(state, 'state');
+
   switch (action.type) {
     case REQUEST_SNAPSHOTS:
       return state;
     case REMOVE_SNAPSHOT:
-      return state.toSeq().filter((snapshot) => snapshot.id !== action.payload);
-
-      // return state.filter((snapshot) => snapshot.id !== action.payload);
+      return state.toSeq().filter((snapshot) => snapshot.id !== action.payload).toList();
     case SET_SNAPSHOTS:
-      return action.payload;
+      return Immutable.List(action.payload);
     default:
       return state;
   }

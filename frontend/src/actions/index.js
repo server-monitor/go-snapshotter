@@ -1,6 +1,4 @@
 
-import * as Immutable from 'immutable';
-
 import Client from '../external_data_access/client';
 import {
   REQUEST_SNAPSHOTS, RECEIVE_SNAPSHOTS,
@@ -17,7 +15,7 @@ export function getSnapshots() {
 export function setSnapshots(response) {
   return {
     type: SET_SNAPSHOTS,
-    payload: Immutable.List(response),
+    payload: response,
   };
 }
 
