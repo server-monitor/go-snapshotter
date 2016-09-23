@@ -11,16 +11,18 @@ export default class List extends React.Component {
     let newPath;
     let pPath = picture.path;
 
-    if (pPath.match('^http')) {
-      if (pPath.match('localhost')) {
-        newPath = 'http://localhost:5000' + pPath;
-      } else {
-        newPath = pPath;
-      }
-    } else {
-      // newPath = 'https://snapshizzy.herokuapp.com' + pPath;
+    const config = getConfig() || require('config');
 
+    if (config.PRODUCTION) {
       newPath = pPath;
+    } else {
+      if (process.env.LOADED_MOCHA_OPTS) {
+        // If executing under test env (node, npm, mocha currently)...
+        newPath = pPath;
+      } else {
+        // If executing under browser contex,t no node, no proc env test runner var...
+        newPath = config.backend + pPath;
+      }
     }
 
     return {

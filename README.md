@@ -39,12 +39,14 @@ Clone this repo and cd into the newly created repo dir.
 
 2. `npm install`
 
-3. `npm run test:once` # proceed if all tests pass.
+3. Configure backend to either remote or local. This configuration is found in [webpack.config.js file](frontend/webpack.config.js) => `module.exports` => `externals` => `config`.
 
-4. `npm run compile` # this will produce a bundled JS file in frontend/www
+4. `npm run test:once` # proceed if all tests pass.
+
+5. `npm run compile` # this will produce a bundled JS file in frontend/www
 
   Point your browser to localhost:5000.
 
-4. `npm run dev:hot` # to run the frontend dev server.
+6. `npm run dev:hot` # to run the frontend dev server.
 
   Go to localhost:8080.

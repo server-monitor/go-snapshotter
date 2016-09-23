@@ -5,7 +5,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import snapshotsFixture from './snapshots_fixture';
-import { info } from '../../www/DEBUG';
+import { info, getConfig } from '../../www/DEBUG';
 
 export function renderReactElement(rElement, options = null) {
   if (options) {
@@ -97,6 +97,7 @@ export function inferImport(...bnamesArg) {
 }
 
 global.info = info;
+global.getConfig = getConfig;
 
 global.SpecHelper = {
   renderReactElement,

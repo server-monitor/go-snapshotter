@@ -1,6 +1,8 @@
 
+// ... HACKs and other nasty stuff.
+
 function info(msg, titleArg = '') {
-  let title = 'DEBUG';
+  var title = 'DEBUG';
 
   if (titleArg) {
     title += ` ${titleArg}...`;
@@ -11,9 +13,26 @@ function info(msg, titleArg = '') {
   [title, msg, '\n\n'].forEach((obj) => console.log(obj));
 }
 
+// Very hacky, terrible, exists so we can use remote, local and normal backends...
+// In theory, if executing on the browser, try should not succeed because require is not visible.
+//   require is loaded by webpack and this thing is loaded prior to webpack.
+function getConfig() {
+  var config;
+
+  try {
+    return JSON.parse(
+      require('../webpack.config').externals.config
+    );
+  } catch (err) {
+    return;
+  }
+
+  return config;
+}
+
 function sleepBlock(ms) {
-  let end = new Date().getTime() + ms;
-  let start = new Date().getTime();
+  var end = new Date().getTime() + ms;
+  var start = new Date().getTime();
 
   while (start < end) {
     start = new Date().getTime();
@@ -23,5 +42,6 @@ function sleepBlock(ms) {
 if (typeof module !== 'undefined') {
   module.exports = {
     info: info,
+    getConfig: getConfig,
   };
 }

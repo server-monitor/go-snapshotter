@@ -1,7 +1,6 @@
 export default function snapshotsFixture() {
-  // const host = 'https://snapshizzy.herokuapp.com';
-
-  const host = 'http://localhost:5000';
+  const config = getConfig() || require('config');
+  const host = config.PRODUCTION ? '' : config.backend;
 
   let request = new XMLHttpRequest();
 
@@ -24,6 +23,8 @@ export default function snapshotsFixture() {
     console.log(responseText);
     throw Error();
   }
+
+  if (config.PRODUCTION) return snapshots;
 
   return snapshots.map((snapshot) => {
     snapshot.picture.path = `${host}/${snapshot.picture.path}`;

@@ -14,6 +14,10 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const REMOTE = Symbol('REMOTE');
+const LOCAL = Symbol('LOCAL');
+const PRODUCTION = Symbol('PRODUCTION');
+
 module.exports = {
   context: path.join(__dirname, 'src'),
   entry: [
@@ -52,7 +56,18 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
   },
 
+  // https://stackoverflow.com/questions/30568796/how-to-store-configuration-file-and-read-it-using-react
+  // https://stackoverflow.com/questions/36065832/webpack-include-configuration-file-as-external-resource?noredirect=1#comment59778282_36065832
   externals: {
+    config: JSON.stringify({
+      // If true, backend will be ignored.
+      PRODUCTION: false,
+
+      backend: 'https://snapshizzy.herokuapp.com',
+
+      // backend: 'http://localhost:5000',
+    }),
+
     cheerio: 'window',
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true,

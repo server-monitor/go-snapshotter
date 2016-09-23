@@ -9,11 +9,12 @@ const Client = {
   },
 
   getSnapshots: (callback) => {
-    // const urLoc = 'https://snapshizzy.herokuapp.com/snapshots';
+    let urLoc = '/snapshots';
 
-    // const urLoc = 'http://localhost:5000/snapshots';
-
-    const urLoc = '/snapshots';
+    const config = require('config');
+    if (!config.PRODUCTION) {
+      urLoc = config.backend + urLoc;
+    }
 
     return Client.makeGetRequest({ url: urLoc }, (err, response) => {
       if (err || !response.ok) {
