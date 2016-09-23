@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "21bfcb203250389e669b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "cf77ae529f7cc8fcdc17"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -608,17 +608,18 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _reducers = __webpack_require__(217);
+	var _reducers = __webpack_require__(218);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	var _reduxThunk = __webpack_require__(219);
+	var _reduxThunk = __webpack_require__(220);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	var store = (0, _redux.createStore)(_reducers2['default'], (0, _redux.applyMiddleware)(_reduxThunk2['default']));
+	// window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = function () {};
 	
 	_reactDom2['default'].render(_react2['default'].createElement(
 	  _reactRedux.Provider,
@@ -23673,7 +23674,7 @@
 	
 	var _actions = __webpack_require__(199);
 	
-	var _list = __webpack_require__(207);
+	var _list = __webpack_require__(208);
 	
 	var _list2 = _interopRequireDefault(_list);
 	
@@ -23718,7 +23719,7 @@
 	
 	var _client2 = _interopRequireDefault(_client);
 	
-	var _type = __webpack_require__(206);
+	var _type = __webpack_require__(207);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
@@ -23767,11 +23768,12 @@
 	
 	  getSnapshots: function () {
 	    function getSnapshots(callback) {
-	      // const urLoc = 'https://snapshizzy.herokuapp.com/snapshots';
-	
-	      // const urLoc = 'http://localhost:5000/snapshots';
-	
 	      var urLoc = '/snapshots';
+	
+	      var config = __webpack_require__(206);
+	      if (!config.PRODUCTION) {
+	        urLoc = config.backend + urLoc;
+	      }
 	
 	      return Client.makeGetRequest({ url: urLoc }, function (err, response) {
 	        if (err || !response.ok) {
@@ -25353,6 +25355,12 @@
 /* 206 */
 /***/ function(module, exports) {
 
+	module.exports = {"PRODUCTION":false,"backend":"https://snapshizzy.herokuapp.com"};
+
+/***/ },
+/* 207 */
+/***/ function(module, exports) {
+
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -25362,10 +25370,10 @@
 	var REMOVE_SNAPSHOT = exports.REMOVE_SNAPSHOT = Symbol('REMOVE_SNAPSHOT');
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -25377,7 +25385,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _box = __webpack_require__(208);
+	var _box = __webpack_require__(209);
 	
 	var _box2 = _interopRequireDefault(_box);
 	
@@ -25414,16 +25422,18 @@
 	        var newPath = void 0;
 	        var pPath = picture.path;
 	
-	        if (pPath.match('^http')) {
-	          if (pPath.match('localhost')) {
-	            newPath = 'http://localhost:5000' + pPath;
-	          } else {
-	            newPath = pPath;
-	          }
-	        } else {
-	          // newPath = 'https://snapshizzy.herokuapp.com' + pPath;
+	        var config = getConfig() || __webpack_require__(206);
 	
+	        if (config.PRODUCTION) {
 	          newPath = pPath;
+	        } else {
+	          if (process.env.LOADED_MOCHA_OPTS) {
+	            // If executing under test env (node, npm, mocha currently)...
+	            newPath = pPath;
+	          } else {
+	            // If executing under browser contex,t no node, no proc env test runner var...
+	            newPath = config.backend + pPath;
+	          }
 	        }
 	
 	        return {
@@ -25472,9 +25482,10 @@
 	}(_react2['default'].Component);
 	
 	exports['default'] = List;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25489,15 +25500,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _box = __webpack_require__(209);
+	var _box = __webpack_require__(210);
 	
 	var _box2 = _interopRequireDefault(_box);
 	
-	var _box3 = __webpack_require__(212);
+	var _box3 = __webpack_require__(213);
 	
 	var _box4 = _interopRequireDefault(_box3);
 	
-	var _box5 = __webpack_require__(214);
+	var _box5 = __webpack_require__(215);
 	
 	var _box6 = _interopRequireDefault(_box5);
 	
@@ -25576,7 +25587,7 @@
 	};
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25591,7 +25602,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _anchor = __webpack_require__(210);
+	var _anchor = __webpack_require__(211);
 	
 	var _anchor2 = _interopRequireDefault(_anchor);
 	
@@ -25633,7 +25644,7 @@
 	exports['default'] = Box;
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25648,7 +25659,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _image = __webpack_require__(211);
+	var _image = __webpack_require__(212);
 	
 	var _image2 = _interopRequireDefault(_image);
 	
@@ -25695,7 +25706,7 @@
 	};
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25749,7 +25760,7 @@
 	};
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25764,7 +25775,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _remover = __webpack_require__(213);
+	var _remover = __webpack_require__(214);
 	
 	var _remover2 = _interopRequireDefault(_remover);
 	
@@ -25806,7 +25817,7 @@
 	exports['default'] = Box;
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25873,7 +25884,7 @@
 	exports['default'] = Remover;
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25888,11 +25899,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _title = __webpack_require__(215);
+	var _title = __webpack_require__(216);
 	
 	var _title2 = _interopRequireDefault(_title);
 	
-	var _category = __webpack_require__(216);
+	var _category = __webpack_require__(217);
 	
 	var _category2 = _interopRequireDefault(_category);
 	
@@ -25935,7 +25946,7 @@
 	exports['default'] = Box;
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25993,7 +26004,7 @@
 	};
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26052,7 +26063,7 @@
 	};
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26063,7 +26074,7 @@
 	
 	var _redux = __webpack_require__(173);
 	
-	var _snapshots = __webpack_require__(218);
+	var _snapshots = __webpack_require__(219);
 	
 	var _snapshots2 = _interopRequireDefault(_snapshots);
 	
@@ -26076,7 +26087,7 @@
 	exports['default'] = rootReducer;
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26085,7 +26096,7 @@
 	  value: true
 	});
 	
-	var _type = __webpack_require__(206);
+	var _type = __webpack_require__(207);
 	
 	// const snapshot = (state = {}, action) => {
 	//   switch (action.type) {
@@ -26119,7 +26130,7 @@
 	exports['default'] = snapshots;
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports) {
 
 	'use strict';
