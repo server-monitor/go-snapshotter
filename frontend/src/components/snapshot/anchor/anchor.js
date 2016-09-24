@@ -7,7 +7,7 @@ export default class Anchor extends React.Component {
       <a href={ this.context.url } target="_blank">
         <Image />
       </a>
-    ); // /
+    );
   }
 }
 

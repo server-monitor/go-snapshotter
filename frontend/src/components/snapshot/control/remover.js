@@ -7,7 +7,7 @@ export class Remover extends React.Component {
       <button onClick={ () => {
         this.context.removeSnapshot.call(this, this.context.id);
       }}>X</button>
-    ); // /
+    );
   }
 }
 

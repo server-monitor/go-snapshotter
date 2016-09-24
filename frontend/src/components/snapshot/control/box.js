@@ -8,6 +8,6 @@ export default class Box extends React.Component {
       <div className="control_box">
         <Remover />
       </div>
-    ); // /
+    );
   }
 }
