@@ -7,6 +7,6 @@ export default class Box extends React.Component {
       <div className="picture_container">
         <Anchor />
       </div>
-    ); // /
+    );
   }
 }

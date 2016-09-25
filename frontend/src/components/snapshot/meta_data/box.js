@@ -9,6 +9,6 @@ export default class Box extends React.Component {
         <Title />
         <Category />
       </div>
-    ); // /
+    );
   }
 }

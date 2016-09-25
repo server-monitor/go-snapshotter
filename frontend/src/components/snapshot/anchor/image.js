@@ -4,7 +4,7 @@ export default class Image extends React.Component {
   render() {
     return (
       <img className="ui fluid image" src={ this.context.picture.path } />
-    ); // /
+    );
   }
 }
 

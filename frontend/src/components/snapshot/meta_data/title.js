@@ -4,7 +4,7 @@ export default class Title extends React.Component {
   render() {
     return (
       <span>{ this.context.title }</span>
-    ); // /
+    );
   }
 }
 

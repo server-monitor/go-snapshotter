@@ -1,4 +1,10 @@
-import { SET_SNAPSHOTS, REMOVE_SNAPSHOT } from '../actions/type';
+import * as Immutable from 'immutable';
+
+import {
+  // REQUEST_SNAPSHOTS, RECEIVE_SNAPSHOTS,
+  REMOVE_SNAPSHOT,
+  SET_SNAPSHOTS,
+} from '../actions/type';
 
 // const snapshot = (state = {}, action) => {
 //   switch (action.type) {
@@ -9,12 +15,14 @@ import { SET_SNAPSHOTS, REMOVE_SNAPSHOT } from '../actions/type';
 //   }
 // };
 
-const snapshots = (state = [], action) => {
+const snapshots = (state = Immutable.List(), action) => {
   switch (action.type) {
-    case SET_SNAPSHOTS:
-      return action.payload;
+    // case REQUEST_SNAPSHOTS:
+    //   return state;
     case REMOVE_SNAPSHOT:
-      return state.filter((snapshot) => snapshot.id !== action.payload);
+      return state.toSeq().filter((snapshot) => snapshot.id !== action.payload).toList();
+    case SET_SNAPSHOTS:
+      return Immutable.List(action.payload);
     default:
       return state;
   }

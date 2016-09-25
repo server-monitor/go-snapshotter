@@ -30,7 +30,7 @@ export default class Box extends React.Component {
           <MetaDataBox />
         </div>
       </div>
-    ); // /
+    );
   }
 }
 

@@ -11,17 +11,18 @@ const Client = {
   getSnapshots: (callback) => {
     let urLoc = '/snapshots';
 
-    const config = require('config');
-    if (!config.PRODUCTION) {
-      urLoc = config.backend + urLoc;
-    }
+    const config = getConfig() || require('config');
 
-    return Client.makeGetRequest({ url: urLoc }, (err, response) => {
-      if (err || !response.ok) {
-        throw Error(err);
+    if (!config.PRODUCTION) urLoc = config.backend + urLoc;
+
+    return Client.makeGetRequest({ url: urLoc }, (error, response) => {
+      let editedRes = null;
+
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(error, JSON.parse(response.text));
       }
-
-      callback(JSON.parse(response.text));
     });
   },
 };
