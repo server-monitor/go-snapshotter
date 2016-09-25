@@ -15,7 +15,7 @@ describe('Snapshots <List ... />', function () {
   const removeSnapshot = () => {};
 
   const expectedElement = (
-    <div className="ui center aligned grid snapshots_list">
+    <div className="ui center aligned grid">
       {
         snapshots.map((snapshot) => {
           const { id, url, picture, title, meta } = snapshot;

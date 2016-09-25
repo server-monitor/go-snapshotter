@@ -22,9 +22,9 @@ const {
   inferImport, shouldEqual, renderReactElement, snapshotsFixture,
 } = SpecHelper;
 
-const imports = inferImport('../containers/snapshot/list');
+const imports = inferImport('../containers/snapshot/list', '../containers/status/index');
 
-const [App, SnapshotList] = imports;
+const [App, SnapshotList, Status] = imports;
 
 describe('<App ... /> (smoke check)', () => {
   it('should render without crashing', () => {
@@ -43,6 +43,7 @@ describe('<App ... />', () => {
   const expectedElement = (
     <div>
       <SnapshotList />
+      <Status />
     </div>
   );
 
