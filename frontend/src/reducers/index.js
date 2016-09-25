@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import snapshots from './snapshots';
-import requestStatus from './requestStatus';
+import status from './status';
 
 const rootReducer = combineReducers({
   snapshots,
-  requestStatus,
+  status,
 });
 
 export default rootReducer;

@@ -13,12 +13,16 @@ const Client = {
 
     const config = getConfig() || require('config');
 
-    if (!config.PRODUCTION) {
-      urLoc = config.backend + urLoc;
-    }
+    if (!config.PRODUCTION) urLoc = config.backend + urLoc;
 
-    return Client.makeGetRequest({ url: urLoc }, (err, response) => {
-      callback(err, JSON.parse(response.text));
+    return Client.makeGetRequest({ url: urLoc }, (error, response) => {
+      let editedRes = null;
+
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(error, JSON.parse(response.text));
+      }
     });
   },
 };

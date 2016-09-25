@@ -35,7 +35,7 @@ export default class List extends React.Component {
 
   render() {
     return (
-      <div className="ui center aligned grid snapshots_list">
+      <div className="ui center aligned grid">
         {
           this.props.snapshots.map((snapshot) => {
             const { id, url, picture, title, meta } = snapshot;

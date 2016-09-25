@@ -21,6 +21,7 @@ const PRODUCTION = Symbol('PRODUCTION');
 module.exports = {
   context: path.join(__dirname, 'src'),
   entry: [
+    'babel-polyfill',
     './index.js',
   ],
 
@@ -63,9 +64,9 @@ module.exports = {
       // If true, backend will be ignored.
       PRODUCTION: false,
 
-      backend: 'https://snapshizzy.herokuapp.com',
+      // backend: 'https://snapshizzy.herokuapp.com',
 
-      // backend: 'http://localhost:5000',
+      backend: 'http://localhost:5000',
     }),
 
     cheerio: 'window',
