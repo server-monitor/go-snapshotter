@@ -17,7 +17,6 @@ body {
 
 #app .picture_container img {
   opacity: 0.6;
-  // border: 1px solid blue;
 }
 
 .control_box {
@@ -28,7 +27,6 @@ body {
 }
 
 .control_box button {
-  // border: 2px broken red;
   color: red;
   border-radius: 14px;
   margin-right: 35px;
@@ -44,6 +42,7 @@ body {
 }
 
 .meta_data_box span {
+  background-color: green;
   // font-size: 16px;
 
   padding: 4px 4px;
@@ -55,37 +54,12 @@ body {
 
   color: white;
   background-color: rgba(10, 10, 10, 0.8);
-  // background-color: red;
-  // background-color: rgba(126, 24, 128, 0.85);
-  // background-color: rgba(255,0,0,0.65);
 
   // color: black;
   // background-color: rgba(250,250,250,0.8);
 }
 
-// https://css-tricks.com/snippets/css/make-pre-text-wrap/
-// pre {
-//   white-space: pre-wrap;       /* css-3 */
-//   white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-//   white-space: -pre-wrap;      /* Opera 4-6 */
-//   white-space: -o-pre-wrap;    /* Opera 7 */
-//   word-wrap: break-word;       /* Internet Explorer 5.5+ */
-// }
-
-// https://developer.mozilla.org/en-US/docs/Web/CSS/white-space
-// .custom_pre {
-//   word-wrap: break-word;      /* IE 5.5-7 */
-//   white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
-//   white-space: pre-wrap;      /* current browsers */
-// }
-
 .status_box {
-  // border: solid 10px green;
-  // overflow-wrap: break-word;
-  // position: absolute;
-  // top: 5%;
-  // width: 400px;
-  // left: 45%;
 }
 
 .status_box ul {

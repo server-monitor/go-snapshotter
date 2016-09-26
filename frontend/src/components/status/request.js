@@ -1,8 +1,9 @@
 import React from 'react';
 
-import MessageBox from './message_box';
+import NotificationWrapper from './notification';
+import ModalMessageBox from './modal_message_box';
 
-export default class RequestStatus extends React.Component {
+export default class Request extends React.Component {
   render() {
     const { status } = this.props;
     const { error } = status;
@@ -11,27 +12,20 @@ export default class RequestStatus extends React.Component {
       info(error, 'ERROR...');
 
       const str = JSON.stringify(error);
-      return (<MessageBox
-        messageClass="error"
-        header="ERROR"
-        message={ error.message.split('\n') }
+      return (<ModalMessageBox
+        messageClass='error'
+        header='ERROR'
+        messageList={ error.message.split('\n').concat('Please try again later') }
       />);
-
-      // return (
-      //   <div className="ui error message">
-      //     <i className="close icon"></i>
-      //     <div className="header">
-      //       ERROR
-      //     </div>
-      //     <ul className="list">
-      //       { error.message.split('\n').map((line, ix) => <li key={ ix }>{ line }</li>) }
-      //     </ul>
-      //   </div>
-      // );
     }
 
-    return (
-      <span></span>
-    );
+    return (<NotificationWrapper
+      message='Request OK'
+      dismissAfter={ 3400 }
+    />);
   }
 }
+
+Request.propTypes = {
+  status: React.PropTypes.object,
+};
