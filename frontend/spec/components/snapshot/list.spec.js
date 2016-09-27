@@ -5,8 +5,8 @@ const {
   inferImport, shouldEqual, renderReactElement, snapshotsFixture,
 } = SpecHelper;
 
-const imports = inferImport('./box');
-const [List, Box] = imports;
+const imports = inferImport('./index');
+const [List, SnapshotIndex] = imports;
 
 describe('Snapshots <List ... />', function () {
   const snapshots = snapshotsFixture();
@@ -20,7 +20,7 @@ describe('Snapshots <List ... />', function () {
         snapshots.map((snapshot) => {
           const { id, url, picture, title, meta } = snapshot;
           return (
-            <Box key={ id }
+            <SnapshotIndex key={ id }
               id={ id }
               url={ url }
               picture={ picture }

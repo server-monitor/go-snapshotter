@@ -2,10 +2,10 @@ import React from 'react';
 
 import Remover from './remover';
 
-export default class Box extends React.Component {
+export default class Index extends React.Component {
   render() {
     return (
-      <div className="control_box">
+      <div className='control_index'>
         <Remover />
       </div>
     );

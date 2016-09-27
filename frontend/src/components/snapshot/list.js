@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Box from './box';
+import SnapshotIndex from './index';
 
 export default class List extends React.Component {
   componentDidMount() {
@@ -40,7 +40,7 @@ export default class List extends React.Component {
           this.props.snapshots.map((snapshot) => {
             const { id, url, picture, title, meta } = snapshot;
             return (
-              <Box key={ id }
+              <SnapshotIndex key={ id }
                 id={ id }
                 url={ url }
                 picture={ this.picturePathHack(picture) }

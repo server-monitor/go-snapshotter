@@ -6,7 +6,7 @@ import { Image } from 'stardust';
 const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
 inferImport();
 
-const Picture = inferImport()[0];
+const PictureIndex = inferImport()[0];
 
 describe('<Picture ... />', function () {
   const picture = { path: '/snapshots/pic.jpg' };
@@ -25,22 +25,8 @@ describe('<Picture ... />', function () {
 
   it(shouldEqual(expectedElement), function () {
     expect(renderReactElement(
-      <Index />,
+      <PictureIndex />,
       { context: { picture, url } }
     )).to.eql(expectedElement);
   });
 });
-
-// describe('<Image ... />', function () {
-//   const picture = { path: '/snapshots/pic.jpg' };
-//   const expectedElement = (
-//     <img className="ui fluid image" src={ picture.path } />
-//   );
-
-//   it(shouldEqual(expectedElement), function () {
-//     expect(renderReactElement(
-//       <Image />,
-//       { context: { picture } }
-//     )).to.eql(expectedElement);
-//   });
-// });

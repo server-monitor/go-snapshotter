@@ -5,12 +5,12 @@ import Category from './category';
 import CurrentTopic from './current_topic';
 import Progress from './progress';
 
-import './box.less';
+import './index.less';
 
-export default class Box extends React.Component {
+export default class Index extends React.Component {
   render() {
     return (
-      <div className='box'>
+      <div className='index'>
         <Title />
         <Category />
         <CurrentTopic />

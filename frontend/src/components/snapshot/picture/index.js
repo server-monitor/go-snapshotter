@@ -13,10 +13,6 @@ export default class Index extends React.Component {
         />
       </div>
     );
-
-    // return (
-    //   <img className="ui fluid image" src={ this.context.picture.path } />
-    // );
   }
 }
 
