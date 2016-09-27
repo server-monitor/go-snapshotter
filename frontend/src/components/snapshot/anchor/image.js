@@ -1,13 +1,25 @@
 import React from 'react';
 
-export default class Image extends React.Component {
+import { Image } from 'stardust';
+
+export default class Picture extends React.Component {
   render() {
     return (
-      <img className="ui fluid image" src={ this.context.picture.path } />
+      <Image
+        src={ this.context.picture.path }
+        href={ this.context.url }
+        target='_blank'
+        className='fluid'
+      />
     );
+
+    // return (
+    //   <img className="ui fluid image" src={ this.context.picture.path } />
+    // );
   }
 }
 
-Image.contextTypes = {
+Picture.contextTypes = {
   picture: React.PropTypes.object.isRequired,
+  url: React.PropTypes.string.isRequired,
 };

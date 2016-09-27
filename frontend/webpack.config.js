@@ -62,7 +62,7 @@ module.exports = {
   externals: {
     config: JSON.stringify({
       // If true, prod_test_fixture_backend will be used.
-      PRODUCTION: true,
+      PRODUCTION: false,
       prod_test_fixture_backend: 'http://localhost:5000',
 
       // backend: 'https://snapshizzy.herokuapp.com',
@@ -88,18 +88,23 @@ module.exports = {
 
       { test: /\.less$/, exclude: /node_modules/, loader: lessLoader },
 
-      // ... temporary for rc-slider...
-      { test: /\.css/, loader: ExtractTextPlugin.extract('css') },
+      // ... temporary (???) for rc-slider...
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('css') },
 
-      // ???
-      // { test: /\.(eot|svg|ttf|woff|woff2)$/, exclude: /node_modules/, loader: "file" },
-
+      // // ... temporary (???) for rc-slider... !!BREAKS Semantic UI!!
       // {
       //   test: /\.css/,
       //   loader: ExtractTextPlugin.extract(
       //     'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
       //   ),
       // },
+
+      // { test: /\.(woff|png|jpg|gif)$/, loader: 'url-loader?limit=10000' },
+      // ... add woff2, svg, eot, ttf => for Semantic UI
+      { test: /\.(woff|woff2|png|jpg|gif|svg|eot|ttf)$/, loader: 'url-loader?limit=10000' },
+
+      // ???
+      // { test: /\.(eot|svg|ttf|woff|woff2)$/, exclude: /node_modules/, loader: "file" },
     ],
   },
 

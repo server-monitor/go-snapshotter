@@ -22,7 +22,7 @@ describe('Snapshot <Box ... />', function () {
   const largeScreen = 'three wide large screen';
 
   const expectedElement = (
-    <div className={ `${mobile} ${tablet} ${computer} ${largeScreen} column` }>
+    <div className={ `ui ${mobile} ${tablet} ${computer} ${largeScreen} column` }>
       <div className="card">
         <AnchorBox />
         <ControlBox />
