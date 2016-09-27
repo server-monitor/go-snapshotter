@@ -14,9 +14,9 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const REMOTE = Symbol('REMOTE');
-const LOCAL = Symbol('LOCAL');
-const PRODUCTION = Symbol('PRODUCTION');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var lessLoader = ExtractTextPlugin.extract('css?sourceMap!less?sourceMap');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
@@ -62,7 +62,7 @@ module.exports = {
   externals: {
     config: JSON.stringify({
       // If true, backend will be ignored.
-      PRODUCTION: false,
+      PRODUCTION: true,
 
       // backend: 'https://snapshizzy.herokuapp.com',
 
@@ -84,6 +84,21 @@ module.exports = {
           presets: ['react', 'es2015'],
         },
       },
+
+      { test: /\.less$/, exclude: /node_modules/, loader: lessLoader },
+
+      // ... temporary for rc-slider...
+      { test: /\.css/, loader: ExtractTextPlugin.extract('css') },
+
+      // ???
+      // { test: /\.(eot|svg|ttf|woff|woff2)$/, exclude: /node_modules/, loader: "file" },
+
+      // {
+      //   test: /\.css/,
+      //   loader: ExtractTextPlugin.extract(
+      //     'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+      //   ),
+      // },
     ],
   },
 
@@ -100,6 +115,9 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+
+    // new ExtractTextPlugin('bundle.css'),
+    new ExtractTextPlugin('bundle.css', { allChunks: true }),
   ],
 };
 

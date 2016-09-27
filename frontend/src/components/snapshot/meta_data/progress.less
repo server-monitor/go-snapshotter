@@ -1,0 +1,98 @@
+
+.progress {
+  height: 100px;
+  display: flex;               /* establish flex container */
+  align-items: center;         /* vertically center flex items */
+
+  // background: none !important;
+
+  .slider_container {
+    width: 100%;
+    border-radius: 7px;
+    // background: none !important;
+
+    /*
+    // https://www.smashingmagazine.com/2013/08/absolute-horizontal-vertical-centering-css/
+    // height: 50%;
+    // overflow: auto;
+    // margin: auto;
+    // position: absolute;
+    // top: 0; left: 0; bottom: 0; right: 0;
+    */
+
+    .rc-slider {
+      height: 25px;
+      background-color: transparent;
+      z-index: 3;
+
+      padding: 0;
+      border-radius: 7px;
+      border: solid 1px green;
+      // border: solid 1px #2db7f5;
+
+      .rc-slider-mark {
+        // border-radius: 6px;
+        // border: dashed 1px green;
+        // font-size: 1px;
+        // min-height: 1px !important;
+        // height: 1px !important;
+        background-color: transparent;
+
+        // z-index: auto;
+        // visibility: hidden;
+      }
+
+      .rc-slider-step {
+        // border: dashed 1px green;
+        // height: 1px;
+        background-color: transparent;
+
+        // z-index: auto;
+        // visibility: hidden;
+      }
+
+      .rc-slider-handle {
+        margin-top: 5px;
+        // visibility: hidden;
+      }
+
+      .rc-slider-track {
+        // border: dashed 1px green;
+        // padding-top: 2px;
+        height: 100%;
+        background-color: green;
+      }
+    }
+  }
+}
+
+// .progress .slider_container {
+//   width: 100%;
+//   background: white !important;
+
+
+//   // https://www.smashingmagazine.com/2013/08/absolute-horizontal-vertical-centering-css/
+//   // height: 50%;
+//   // overflow: auto;
+//   // margin: auto;
+//   // position: absolute;
+//   // top: 0; left: 0; bottom: 0; right: 0;
+
+// }
+
+.rc-slider-tooltip {
+  opacity: 0.90;
+  z-index: 3;
+}
+
+/*
+// // I do not know.
+// .progress .slider_container .rc-slider-tooltip {
+//   opacity: 0.90;
+//   z-index: 3;
+// }
+
+// .progress .slider_container .rc-slider-mark {
+//   visibility: hidden;
+// }
+*/
