@@ -59,10 +59,10 @@
   },
   "main": "webpack.config.js",
   "scripts": {
-    "one": "mocha --growl --require babel-register --require spec/helpers/utilities.js spec/helpers/jsdom.js",
     "start": "webpack-dev-server",
+    "test": "mocha --watch --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js spec/helpers/jsdom.js",
     "test:once": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js spec/helpers/jsdom.js",
-    "test": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --watch --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js spec/helpers/jsdom.js",
+    "test:all": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --watch --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js spec/helpers/jsdom.js",
     "dev:hot": "webpack-dev-server --progress --watch --display-error-details --display-cached",
     "compile": "webpack",
     "watch": "webpack --watch"

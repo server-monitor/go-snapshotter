@@ -1,6 +1,6 @@
 
 import React from 'react';
-import AnchorBox from './anchor/box';
+import Picture from './picture';
 import ControlBox from './control/box';
 import MetaDataBox from './meta_data/box';
 
@@ -40,7 +40,7 @@ export default class Box extends React.Component {
     return (
       <div className={ `ui ${mobile} ${tablet} ${computer} ${largeScreen} column` }>
         <div className='card'>
-          <AnchorBox />
+          <Picture />
           <ControlBox />
           <MetaDataBox />
         </div>

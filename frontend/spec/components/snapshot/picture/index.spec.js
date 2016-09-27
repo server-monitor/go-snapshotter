@@ -4,6 +4,8 @@ import { expect } from 'chai';
 import { Image } from 'stardust';
 
 const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
+inferImport();
+
 const Picture = inferImport()[0];
 
 describe('<Picture ... />', function () {
@@ -11,17 +13,19 @@ describe('<Picture ... />', function () {
   const url = 'https://elixirlang.org';
 
   const expectedElement = (
-    <Image
-      src={ picture.path }
-      href={ url }
-      target='_blank'
-      className='fluid'
-    />
+    <div className='picture_container'>
+      <Image
+        src={ picture.path }
+        href={ url }
+        target='_blank'
+        className='fluid'
+      />
+    </div>
   );
 
   it(shouldEqual(expectedElement), function () {
     expect(renderReactElement(
-      <Picture />,
+      <Index />,
       { context: { picture, url } }
     )).to.eql(expectedElement);
   });

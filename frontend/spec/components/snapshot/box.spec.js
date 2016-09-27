@@ -5,8 +5,8 @@ const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
 
 // Same class name hack...
 // inferImport();
-const imports = inferImport('anchor/box', 'control/box', 'meta_data/box');
-const [Box, AnchorBox, ControlBox, MetaDataBox] = imports;
+const imports = inferImport('picture/index', 'control/box', 'meta_data/box');
+const [Box, Picture, ControlBox, MetaDataBox] = imports;
 
 describe('Snapshot <Box ... />', function () {
   const picture = { path: '/snapshots/pic.jpg' };
@@ -24,7 +24,7 @@ describe('Snapshot <Box ... />', function () {
   const expectedElement = (
     <div className={ `ui ${mobile} ${tablet} ${computer} ${largeScreen} column` }>
       <div className="card">
-        <AnchorBox />
+        <Picture />
         <ControlBox />
         <MetaDataBox />
       </div>
