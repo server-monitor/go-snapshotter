@@ -33341,7 +33341,7 @@
 /* 502 */
 /***/ function(module, exports) {
 
-	module.exports = {"PRODUCTION":false,"prod_test_fixture_backend":"http://localhost:5000","backend":"http://localhost:5000"};
+	module.exports = {"PRODUCTION":true,"prod_test_fixture_backend":"http://localhost:5000","backend":"http://localhost:5000"};
 
 /***/ },
 /* 503 */

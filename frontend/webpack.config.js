@@ -62,7 +62,7 @@ module.exports = {
   externals: {
     config: JSON.stringify({
       // If true, prod_test_fixture_backend will be used.
-      PRODUCTION: false,
+      PRODUCTION: product,
       prod_test_fixture_backend: 'http://localhost:5000',
 
       // backend: 'https://snapshizzy.herokuapp.com',
