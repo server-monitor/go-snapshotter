@@ -8,11 +8,11 @@ describe('<Image ... />', function () {
   const picture = { path: '/snapshots/pic.jpg' };
   const expectedElement = (
     <img className="ui fluid image" src={ picture.path } />
-  ); // /
+  );
 
   it(shouldEqual(expectedElement), function () {
     expect(renderReactElement(
-      <Image />, // /
+      <Image />,
       { context: { picture } }
     )).to.eql(expectedElement);
   });

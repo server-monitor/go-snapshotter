@@ -32,11 +32,11 @@ describe('Snapshots <List ... />', function () {
         })
       }
     </div>
-  ); // /
+  );
 
   it(shouldEqual(expectedElement), function () {
     expect(renderReactElement(
       <List snapshots={ snapshots } removeSnapshot={ removeSnapshot } />
-    )).to.eql(expectedElement); // /
+    )).to.eql(expectedElement);
   });
 });

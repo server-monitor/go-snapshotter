@@ -6,11 +6,11 @@ inferImport();
 
 describe('<Title ... />', function () {
   const title = 'Some title';
-  const expectedElement = <span>{ title }</span>; // /
+  const expectedElement = <div>{ title }</div>;
 
   it(shouldEqual(expectedElement), function () {
     expect(renderReactElement(
-      <Title />, // /
+      <Title />,
       { context: { title } }
     )).to.eql(expectedElement);
   });

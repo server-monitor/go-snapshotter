@@ -1,10 +1,11 @@
 export default function snapshotsFixture() {
   const config = getConfig() || require('config');
-  const host = config.PRODUCTION ? '' : config.backend;
+  const host = config.PRODUCTION ? config.prod_test_fixture_backend : config.backend;
 
   let request = new XMLHttpRequest();
 
   const snapshotsEP = host + '/snapshots';
+
   request.open('GET', snapshotsEP, false);
   request.send(null);
 

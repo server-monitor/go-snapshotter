@@ -12,11 +12,11 @@ describe('Anchor <Box ... />', function () {
     <div className="picture_container">
       <Anchor />
     </div>
-  ); // /
+  );
 
   it(shouldEqual(expectedElement), function () {
     expect(renderReactElement(
       <Box />
-    )).to.eql(expectedElement); // /
+    )).to.eql(expectedElement);
   });
 });

@@ -7,11 +7,11 @@ inferImport();
 
 describe('<Category ... />', function () {
   const category = 'Some category';
-  const expectedElement = <span>Category: { category }</span>; // /
+  const expectedElement = <div>Category: { category }</div>;
 
   it(shouldEqual(expectedElement), function () {
     expect(renderReactElement(
-      <Category />, // /
+      <Category />,
       { context: { meta: { category } } }
     )).to.eql(expectedElement);
   });

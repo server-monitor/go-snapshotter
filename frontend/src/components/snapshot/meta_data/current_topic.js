@@ -7,12 +7,6 @@ export default class CurrentTopic extends React.Component {
         Current topic: Fortan and the future of your programming career
       </div>
     );
-
-    // return (
-    //   <span className='progress'>
-    //     Current topic: Fortan and the future of your programming career
-    //   </span>
-    // );
   }
 }
 

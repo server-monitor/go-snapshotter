@@ -47,7 +47,7 @@ module.exports = {
 
   resolveLoader: {
     root: [
-    path.join(__dirname, 'node_modules'),
+      path.join(__dirname, 'node_modules'),
     ],
   },
   resolve: {
@@ -61,8 +61,9 @@ module.exports = {
   // https://stackoverflow.com/questions/36065832/webpack-include-configuration-file-as-external-resource?noredirect=1#comment59778282_36065832
   externals: {
     config: JSON.stringify({
-      // If true, backend will be ignored.
+      // If true, prod_test_fixture_backend will be used.
       PRODUCTION: true,
+      prod_test_fixture_backend: 'http://localhost:5000',
 
       // backend: 'https://snapshizzy.herokuapp.com',
 

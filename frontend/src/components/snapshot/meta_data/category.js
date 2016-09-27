@@ -5,10 +5,6 @@ export default class Category extends React.Component {
     return (
       <div>Category: { this.context.meta.category }</div>
     );
-
-    // return (
-    //   <span>Category: { this.context.meta.category }</span>
-    // );
   }
 }
 

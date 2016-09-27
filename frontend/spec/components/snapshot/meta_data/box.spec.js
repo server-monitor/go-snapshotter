@@ -8,7 +8,9 @@ const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
 //   other "Box (anchor)"?)
 // Ideally, it should just be inferImport('title', 'category');
 //   and the Box object is autovivified.
-const Box = inferImport('title', 'category')[0];
+// const Box = inferImport('title', 'category', 'current_topic', 'progress')[0];
+const imports = inferImport('title', 'category', 'current_topic', 'progress');
+const [Box, Title, Category, CurrentTopic, Progress] = imports;
 
 describe('Meta data <Box ... />', function () {
   const title = 'Matz';
@@ -16,11 +18,13 @@ describe('Meta data <Box ... />', function () {
   const meta = { category: category };
 
   const expectedElement = (
-    <div className="meta_data_box">
+    <div className='box'>
       <Title />
       <Category />
+      <CurrentTopic />
+      <Progress />
     </div>
-  ); // /
+  );
 
   it(shouldEqual(expectedElement), function () {
     expect(renderReactElement(<Box />)).to.eql(expectedElement);

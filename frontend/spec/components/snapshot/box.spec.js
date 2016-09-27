@@ -29,11 +29,11 @@ describe('Snapshot <Box ... />', function () {
         <MetaDataBox />
       </div>
     </div>
-  ); // /
+  );
 
   const urLoc = 'https//erlang.com';
   const actual = renderReactElement(
-    <Box />, // /
+    <Box />,
   );
 
   // TODO: trying to get rid of test warning (which appears on first run only).
@@ -45,10 +45,10 @@ describe('Snapshot <Box ... />', function () {
 
   it(shouldEqual(expectedElement), function () {
     // expect(renderReactElement(
-    //   <Box />, // /
+    //   <Box />,
     //   { context: { url: urLoc, picture: { path: '/snapshots/pic.jpg' } } }
-    // )).to.eql(expectedElement); // /
-    expect(actual).to.eql(expectedElement); // /
+    // )).to.eql(expectedElement);
+    expect(actual).to.eql(expectedElement);
   });
 
   // const expectedElement = (
@@ -58,11 +58,11 @@ describe('Snapshot <Box ... />', function () {
   //       <MetaDataBox title={ title } meta={ meta } />
   //     </div>
   //   </div>
-  // ); // /
+  // );
 
   // it(shouldEqual(expectedElement), function () {
   //   expect(renderReactElement(
   //     <Box url={ url } picture={ picture } title={ title } meta={ meta } />
-  //   )).to.eql(expectedElement); // /
+  //   )).to.eql(expectedElement);
   // });
 });

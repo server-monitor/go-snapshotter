@@ -41,6 +41,7 @@
     "css-loader": "^0.25.0",
     "enzyme": "^2.4.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "ignore-styles": "^5.0.1",
     "inflection": "^1.10.0",
     "jsdom": "^9.5.0",
     "jsx-to-string": "^0.2.16",
@@ -58,8 +59,8 @@
   "scripts": {
     "one": "mocha --growl --require babel-register --require spec/helpers/utilities.js spec/helpers/jsdom.js",
     "start": "webpack-dev-server",
-    "test:once": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --growl --require babel-register --require spec/helpers/utilities.js spec/helpers/jsdom.js",
-    "test": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --watch --growl --require babel-register --require spec/helpers/utilities.js spec/helpers/jsdom.js",
+    "test:once": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js spec/helpers/jsdom.js",
+    "test": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --watch --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js spec/helpers/jsdom.js",
     "dev:hot": "webpack-dev-server --progress --watch --display-error-details --display-cached",
     "compile": "webpack",
     "watch": "webpack --watch"

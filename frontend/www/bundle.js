@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "24064bbcf9b21ccdbd6d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4f6961a396f9165fb8ec"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -33341,7 +33341,7 @@
 /* 502 */
 /***/ function(module, exports) {
 
-	module.exports = {"PRODUCTION":true,"backend":"http://localhost:5000"};
+	module.exports = {"PRODUCTION":true,"prod_test_fixture_backend":"http://localhost:5000","backend":"http://localhost:5000"};
 
 /***/ },
 /* 503 */
@@ -39001,10 +39001,6 @@
 	          null,
 	          this.context.title
 	        );
-	
-	        // return (
-	        //   <span>{ this.context.title }</span>
-	        // );
 	      }
 	
 	      return render;
@@ -39064,10 +39060,6 @@
 	          'Category: ',
 	          this.context.meta.category
 	        );
-	
-	        // return (
-	        //   <span>Category: { this.context.meta.category }</span>
-	        // );
 	      }
 	
 	      return render;
@@ -39126,12 +39118,6 @@
 	          null,
 	          'Current topic: Fortan and the future of your programming career'
 	        );
-	
-	        // return (
-	        //   <span className='progress'>
-	        //     Current topic: Fortan and the future of your programming career
-	        //   </span>
-	        // );
 	      }
 	
 	      return render;
@@ -39198,7 +39184,7 @@
 	      function render() {
 	        return _react2['default'].createElement(
 	          'div',
-	          { className: 'progress', style: { backgroundColor: 'none' } },
+	          { className: 'progress' },
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'slider_container' },
@@ -39218,95 +39204,6 @@
 	
 	  return Progress;
 	}(_react2['default'].Component);
-	
-	// export default class Progress extends React.Component {
-	//   constructor (props, context) {
-	//     super(props, context);
-	//     this.state = {
-	//       value: 10,
-	//     };
-	
-	//     this.handleChange = this.handleChange.bind(this);
-	//   }
-	
-	//   handleChange(value) {
-	//     info('JAVASCRTIP', 'shit tier language for shit tier devs');
-	//     this.setState({
-	//       value: value,
-	//     });
-	//   }
-	
-	//   render () {
-	//     const { value } = this.state;
-	//     return (
-	//       <div className='horizontal-slider'>
-	//       <h4>Basic Slider</h4>
-	//       <Slider
-	//         min={0}
-	//         max={100}
-	//         value={value}
-	//         onChange={this.handleChange}
-	//       />
-	//       <div className='value'>Progress: {value}</div>
-	//       <hr />
-	//       </div>
-	//     );
-	//   }
-	
-	//   // constructor(props, context) {
-	//   //   super(props, context);
-	//   //   this.state = {
-	//   //     value: 10, /** Start value **/
-	//   //   };
-	//   // }
-	
-	//   // handleChange(value) {
-	//   //   this.setState({
-	//   //     value: value,
-	//   //   });
-	//   // }
-	
-	//   // render() {
-	//   //   let { value } = this.state;
-	//   //   return (
-	//   //       <div style={ { zIndex: 10 } } >
-	//   //         <Slider
-	//   //           value={value}
-	//   //           onChange={this.handleChange}
-	//   //         />
-	//   //         <div>Progress: {value}</div>
-	//   //       </div>
-	//   //   );
-	//   // }
-	
-	//   // // render() {
-	//   // //   // value={Number}
-	//   // //   // onChange={Function}
-	
-	//   // //   constructor(props, context) {
-	//   // //     super(props, context);
-	//   // //     this.state = {
-	//   // //       value: 10 /** Start value **/
-	//   // //     };
-	//   // //   }
-	
-	//   // //   return (
-	//   // //     <div title='Progress'>
-	//   // //       <Slider
-	//   // //         min={0}
-	//   // //         max={100}
-	//   // //         step={1}
-	//   // //         orientation='horizontal'
-	//   // //       />
-	//   // //     </div>
-	//   // //   );
-	//   // // }
-	// }
-	
-	// // Progress.contextTypes = {
-	// //   Progress: React.PropTypes.string.isRequired,
-	// // };
-	
 	
 	exports['default'] = Progress;
 

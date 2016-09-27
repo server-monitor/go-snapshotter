@@ -5,10 +5,6 @@ export default class Title extends React.Component {
     return (
       <div>{ this.context.title }</div>
     );
-
-    // return (
-    //   <span>{ this.context.title }</span>
-    // );
   }
 }
 

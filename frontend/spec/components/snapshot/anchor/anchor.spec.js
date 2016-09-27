@@ -11,11 +11,11 @@ describe('<Anchor ... />', function () {
     <a href={ urLoc } target="_blank">
       <Image />
     </a>
-  ); // /
+  );
 
   it(shouldEqual(expectedElement), function () {
     expect(renderReactElement(
-      <Anchor />, // /
+      <Anchor />,
       { context: { url: urLoc, picture: { path: '/snapshots/pic.jpg' } } }
     )).to.eql(expectedElement);
   });
