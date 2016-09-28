@@ -59,7 +59,7 @@
   },
   "main": "webpack.config.js",
   "scripts": {
-    "gensymlinks": "mkdir www 2>/dev/null; cd www && for file in index.html debug.js; do [ -L \"$file\" ] || ln -sf \"../src/$file\"; done",
+    "gensymlinks": "mkdir www 2>/dev/null; cd www && for file in index.html debug.js; do ln -sf \"../src/$file\"; done",
     "prestart": "npm run gensymlinks",
     "start": "webpack-dev-server --progress --watch --display-error-details --display-cached",
     "test": "mocha --watch --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js spec/helpers/jsdom.js",
