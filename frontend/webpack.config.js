@@ -7,8 +7,9 @@
 
 const path = require('path');
 const webpack = require('webpack');
-
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const PRODUCTION = false;
 
 // TODO...
 // const doNotMangleNames = 'do_not_mangle_names';
@@ -87,7 +88,7 @@ module.exports = {
       // If true, webpack dev server will not have access to
       //   the backend which is typically configured at port 5000.
       //   The webpack dev server is listening on port 8080.
-      PRODUCTION: true,
+      PRODUCTION: PRODUCTION,
       prod_test_fixture_backend: 'http://localhost:5000',
 
       // backend: 'https://snapshizzy.herokuapp.com',
