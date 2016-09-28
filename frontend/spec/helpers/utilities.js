@@ -5,7 +5,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import snapshotsFixture from './snapshots_fixture';
-import { info, getConfig } from '../../www/DEBUG';
+import { info, getConfig } from '../../src/debug';
 
 export function renderReactElement(rElement, options = null) {
   if (options) {

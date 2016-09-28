@@ -4,9 +4,9 @@ import Picture from './picture';
 import Control from './control';
 import MetaData from './meta_data';
 
-import 'semantic-ui-css/semantic.css';
+// import 'semantic-ui-css/semantic.css';
 
-import semantic from 'semantic-ui-css/semantic.css';
+// import semantic from 'semantic-ui-css/semantic.css';
 
 export default class SnapshotIndex extends React.Component {
   getChildContext() {

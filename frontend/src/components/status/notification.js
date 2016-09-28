@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { OrderedSet } from 'immutable';
 import { NotificationStack } from 'react-notification';
 
-import style from './notification.less';
+import './notification.less';
 
 export default class NotificationWrapper extends Component {
   constructor(props) {
@@ -57,7 +57,8 @@ export default class NotificationWrapper extends Component {
     //   On onDismiss={notification...} line
 
     return (
-      <div className={ style.status_notification }>
+      // <div className={ style.status_notification }>
+      <div className='status_notification'>
         <NotificationStack
           notifications={this.state.notifications.toArray()}
           onDismiss={notification => this.setState({

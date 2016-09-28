@@ -1,5 +1,15 @@
 
-:local(.status_notification) {
-  // TODO: inv., seems to have no effect.
-  z-index: 20;
+// !!Don't localize, using class names embedded inside an NPM package!!
+.status_notification {
+  .notification-list {
+    .notification-bar-active {
+      z-index: 20;
+      // TODO: probably change background color to make it stand out more
+      //   against the mostly black-ish color in the background.
+      // Don't remove this. For remembering how to change color of the
+      //   snack bar background.
+      // background: green !important;
+      border: solid 1px white;
+    }
+  }
 }

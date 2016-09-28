@@ -21,7 +21,7 @@ export default class Request extends React.Component {
 
     return (<NotificationWrapper
       message='Request OK'
-      dismissAfter={ 3400 }
+      dismissAfter={ 10000 }
     />);
   }
 }
