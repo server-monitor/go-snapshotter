@@ -13,7 +13,10 @@ describe('<Picture ... />', function () {
   const url = 'https://elixirlang.org';
 
   const expectedElement = (
-    <div className='picture_container'>
+    // Used to be ...
+    // <div className='picture_container'>
+    // Changed to ...=undefined because localized CSS => actual = undef...
+    <div className={ undefined }>
       <Image
         src={ picture.path }
         href={ url }

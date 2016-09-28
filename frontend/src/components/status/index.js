@@ -4,7 +4,7 @@ import RequestStatus from './request';
 
 export default class Status extends React.Component {
   render() {
-    return <div className='ui center aligned grid status_index'>
+    return <div className='ui center aligned grid'>
       <RequestStatus status={ this.props.status }/>
     </div>;
   }

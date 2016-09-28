@@ -18,7 +18,10 @@ describe('Meta data <MetadataIndex ... />', function () {
   const meta = { category: category };
 
   const expectedElement = (
-    <div className='index'>
+    // Used to be ...
+    // <div className='index' or 'meta_data'>
+    // Changed to ...=undefined because localized CSS => actual = undef...
+    <div className={ undefined }>
       <Title />
       <Category />
       <CurrentTopic />

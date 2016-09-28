@@ -5,12 +5,12 @@ import Category from './category';
 import CurrentTopic from './current_topic';
 import Progress from './progress';
 
-import './index.less';
+import style from './index.less';
 
 export default class Index extends React.Component {
   render() {
     return (
-      <div className='index'>
+      <div className={ style.meta_data }>
         <Title />
         <Category />
         <CurrentTopic />

@@ -1,4 +1,26 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin);.rc-slider {
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin);.less_index__picture_container___34HNk {
+  overflow: hidden;
+  height: 380px;
+  width: auto;
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+.less_index__picture_container___34HNk img {
+  opacity: 0.6;
+}
+.less_index__control___nvVx4 {
+  position: absolute;
+  top: 6%;
+  right: 8%;
+  width: auto;
+  z-index: 2;
+}
+.less_index__control___nvVx4 button {
+  color: red;
+  border-radius: 14px;
+  float: right;
+}
+.rc-slider {
   position: relative;
   height: 4px;
   width: 100%;
@@ -277,26 +299,18 @@
   border-width: 4px 4px 0;
   border-top-color: #6c6c6c;
 }
-.progress {
+.snapshot_meta_data_progress {
   height: 100px;
   display: flex;
   /* establish flex container */
   align-items: center;
   /* vertically center flex items */
 }
-.progress .slider_container {
+.snapshot_meta_data_progress .slider_container {
   width: 100%;
   border-radius: 7px;
-  /*
-    // https://www.smashingmagazine.com/2013/08/absolute-horizontal-vertical-centering-css/
-    // height: 50%;
-    // overflow: auto;
-    // margin: auto;
-    // position: absolute;
-    // top: 0; left: 0; bottom: 0; right: 0;
-    */
 }
-.progress .slider_container .rc-slider {
+.snapshot_meta_data_progress .slider_container .rc-slider {
   height: 25px;
   background-color: transparent;
   z-index: 3;
@@ -304,16 +318,16 @@
   border-radius: 7px;
   border: solid 1px green;
 }
-.progress .slider_container .rc-slider .rc-slider-mark {
+.snapshot_meta_data_progress .slider_container .rc-slider .rc-slider-mark {
   background-color: transparent;
 }
-.progress .slider_container .rc-slider .rc-slider-step {
+.snapshot_meta_data_progress .slider_container .rc-slider .rc-slider-step {
   background-color: transparent;
 }
-.progress .slider_container .rc-slider .rc-slider-handle {
+.snapshot_meta_data_progress .slider_container .rc-slider .rc-slider-handle {
   margin-top: 5px;
 }
-.progress .slider_container .rc-slider .rc-slider-track {
+.snapshot_meta_data_progress .slider_container .rc-slider .rc-slider-track {
   height: 100%;
   background-color: green;
 }
@@ -321,18 +335,7 @@
   opacity: 0.90;
   z-index: 3;
 }
-/*
-// // I do not know.
-// .progress .slider_container .rc-slider-tooltip {
-//   opacity: 0.90;
-//   z-index: 3;
-// }
-
-// .progress .slider_container .rc-slider-mark {
-//   visibility: hidden;
-// }
-*/
-.index {
+.less_index__meta_data___2uDHU {
   position: absolute;
   left: 0;
   right: 0;
@@ -341,7 +344,7 @@
   margin-right: 14px;
   z-index: 2;
 }
-.index div {
+.less_index__meta_data___2uDHU div {
   font-size: 13px;
   padding: 4px;
   margin-bottom: 2px;
@@ -37229,8 +37232,11 @@ html.ios body {
 
 /*******************************
          Site Overrides
-*******************************/.notification {
+*******************************/.less_notification__status_notification___3Z-wI {
   z-index: 20;
+}
+body {
+  padding-top: 24px;
 }
 
 /*# sourceMappingURL=bundle.css.map*/

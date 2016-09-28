@@ -5,30 +5,50 @@
 // +
 // https://github.com/webpack/webpack/issues/1151
 
-// F*** this
-//   "scripts": {
-//     dev:hot": "webpack-dev-server \
-//       --hot --inline --progress --colors --watch \
-//       --display-error-details --display-cached --content-base ./"
-
 const path = require('path');
 const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var lessLoader = ExtractTextPlugin.extract('css?sourceMap!less?sourceMap');
+// TODO...
+// const doNotMangleNames = 'do_not_mangle_names';
+
+const preProc = 'less';
+const lessLoader = ExtractTextPlugin.extract(
+  // Use this if you don't want to add [name, local, hash...] to class names.
+  // 'css?sourceMap!less?sourceMap' // names aren't mangled.
+
+  'css?sourceMap?modules&importLoaders=1&' +
+    `localIdentName=${preProc}_[name]__[local]___[hash:base64:5]!${preProc}?sourceMap`
+
+  // 'localIdentName=[name]__[local]___[hash:base64:5]!less?sourceMap'
+
+  // Also works...
+  // 'css?module&localIdentName=less_[name]__[local]___[hash:base64:5]!less'
+  // 'css?sourceMap!less?sourceMap' // names aren't mangled.
+
+  // I don't know... this...
+  // module&localIdentName
+  // or this...
+  // modules&importLoaders=1&localIdentName
+);
+
+const srcDirResolved = path.resolve(__dirname, 'src');
+const wwwDirResolved = path.resolve(__dirname, 'www');
+const nodeModulesDirResolved = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
-  context: path.join(__dirname, 'src'),
+  context: srcDirResolved,
+  // context: path.join(__dirname, 'src'),
   entry: [
     'babel-polyfill',
     './index.js',
   ],
 
   output: {
-    path: path.join(__dirname, 'www'),
+    path: wwwDirResolved,
+    // path: path.join(__dirname, 'www'),
     filename: 'bundle.js',
-
     // publicPath: 'http://localhost:8080/www',
   },
 
@@ -37,22 +57,24 @@ module.exports = {
     hot: true,
     inline: true,
     historyApiFallback: true,
-    contentBase: path.join(__dirname, 'www'),
-
+    contentBase: wwwDirResolved,
+    // contentBase: path.join(__dirname, 'www'),
     // port: 8080,
   },
 
-  // ... file/line number info missing if this is not enabled.
+  // File/line number info missing if this is not enabled.
   devtool: 'source-map',
 
   resolveLoader: {
     root: [
-      path.join(__dirname, 'node_modules'),
+      nodeModulesDirResolved,
+      // path.join(__dirname, 'node_modules'),
     ],
   },
   resolve: {
     root: [
-      path.join(__dirname, 'node_modules'),
+      nodeModulesDirResolved,
+      // path.join(__dirname, 'node_modules'),
     ],
     extensions: ['', '.js', '.jsx'],
   },
@@ -62,11 +84,10 @@ module.exports = {
   externals: {
     config: JSON.stringify({
       // If true, prod_test_fixture_backend will be used.
-      PRODUCTION: false,
+      PRODUCTION: true,
       prod_test_fixture_backend: 'http://localhost:5000',
 
       // backend: 'https://snapshizzy.herokuapp.com',
-
       backend: 'http://localhost:5000',
     }),
 
@@ -79,25 +100,50 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules)/,
+        // exclude: /node_modules/,
+        include: [srcDirResolved],
         loader: 'babel',
         query: {
           presets: ['react', 'es2015'],
         },
       },
 
-      { test: /\.less$/, exclude: /node_modules/, loader: lessLoader },
+      {
+        test: /\.less$/,
+        // exclude: /node_modules/,
+        include: [srcDirResolved],
+        loader: lessLoader,
+      },
 
-      // ... temporary (???) for rc-slider...
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('css') },
+      // // TODO, less regular and hack, stricter scoping...
+      // { test: /\.less$/,
+      //   exclude: /(node_modules|do_not_mangle_names)/,
+      //   loader: lessLoader, },
+      // { test: /do_not_mangle_names.*\.less$/,
+      //   exclude: /node_modules/,
+      //   loader: 'css?sourceMap!less?sourceMap', },
 
-      // // ... temporary (???) for rc-slider... !!BREAKS Semantic UI!!
-      // {
-      //   test: /\.css/,
-      //   loader: ExtractTextPlugin.extract(
-      //     'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-      //   ),
-      // },
+      // // ... temporary (???) for rc-slider...
+      // { test: /\.css$/, loader: ExtractTextPlugin.extract('css') },
+
+      // ... temporary (???) for semantic-ui-css, rc-slider, others...
+      {
+        test: /\.css$/,
+        // test: /(semantic\-ui\-css|rc-slider).+?\.css$/,
+        // include key originally not present.
+        include: [nodeModulesDirResolved],
+        loader: ExtractTextPlugin.extract('css'),
+      },
+
+      // ... if it breaks Semantic UI CSS and others, just use ExtractTextPlugin.extract('css').
+      {
+        test: /\.css$/,
+        // exclude: /node_modules/,
+        include: [srcDirResolved],
+        loader: ExtractTextPlugin.extract(
+          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+        ),
+      },
 
       // { test: /\.(woff|png|jpg|gif)$/, loader: 'url-loader?limit=10000' },
       // ... add woff2, svg, eot, ttf => for Semantic UI
@@ -108,61 +154,9 @@ module.exports = {
     ],
   },
 
-  // module: {
-  //   loaders: [{
-  //     test: /\.jsx?$/,
-  //     exclude: /(node_modules|bower_components)/,
-  //     loader: 'babel',
-  //     query: {
-  //       presets: ['react', 'es2015', 'stage-0'],
-  //     },
-  //   }],
-  // },
-
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
 
-    // new ExtractTextPlugin('bundle.css'),
     new ExtractTextPlugin('bundle.css', { allChunks: true }),
   ],
 };
-
-// ...
-
-// var path = require('path');
-
-// var config = {
-//   context: path.join(__dirname, 'src'),
-//   entry: [
-//     './index.js',
-//   ],
-
-//   devtool: 'source-map',
-
-//   output: {
-//     path: path.join(__dirname, 'www'),
-//     filename: 'bundle.js',
-//   },
-
-//   module: {
-//     loaders: [
-//       {
-//         test: /\.js$/,
-//         exclude: /node_modules/,
-//         loaders: ['babel'],
-//       },
-//     ],
-//   },
-//   resolveLoader: {
-//     root: [
-//       path.join(__dirname, 'node_modules'),
-//     ],
-//   },
-//   resolve: {
-//     root: [
-//       path.join(__dirname, 'node_modules'),
-//     ],
-//   },
-// };
-
-// module.exports = config;

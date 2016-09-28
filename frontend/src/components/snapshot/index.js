@@ -22,16 +22,7 @@ export default class SnapshotIndex extends React.Component {
 
   render() {
     const mobile = 'eight wide mobile';
-
     const tablet = 'five wide tablet';
-
-    // const { five, wide, table } = semantic;
-    // const tablet = [five, wide, table].join(' ');
-
-    // info(semantic, 'semantic');
-    // info(semantic.five, 'five');
-    // info(tablet, 'tablet');
-
     const computer = 'four wide computer';
     const largeScreen = 'three wide large screen';
 

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Image } from 'stardust';
 
+import style from './index.less';
+
 export default class Index extends React.Component {
   render() {
     return (
-      <div className='picture_container'>
+      <div className={ style.picture_container }>
         <Image
           src={ this.context.picture.path }
           href={ this.context.url }

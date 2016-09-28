@@ -8,6 +8,8 @@ import App from './components/app';
 import rootReducer from './reducers';
 import ReduxThunk from 'redux-thunk';
 
+import './index.less';
+
 const store = createStore(
   rootReducer,
   applyMiddleware(ReduxThunk)
