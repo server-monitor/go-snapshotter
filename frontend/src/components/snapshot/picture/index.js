@@ -11,7 +11,7 @@ export default class Index extends React.Component {
           src={ this.context.picture.path }
           href={ this.context.url }
           target='_blank'
-          className='fluid'
+          fluid
         />
       </div>
     );

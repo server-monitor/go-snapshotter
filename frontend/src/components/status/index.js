@@ -11,9 +11,5 @@ export default class Status extends React.Component {
         <RequestStatus status={ this.props.status }/>
       </Grid>
     );
-
-    // return <div className='ui center aligned grid'>
-    //   <RequestStatus status={ this.props.status }/>
-    // </div>;
   }
 }

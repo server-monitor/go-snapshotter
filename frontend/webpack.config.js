@@ -59,7 +59,7 @@ module.exports = {
     historyApiFallback: true,
     contentBase: wwwDirResolved,
     // contentBase: path.join(__dirname, 'www'),
-    // port: 8080,
+    // port: 8081,
   },
 
   // File/line number info missing if this is not enabled.

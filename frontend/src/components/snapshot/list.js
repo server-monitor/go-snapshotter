@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { Grid } from 'stardust';
+
 import SnapshotIndex from './index';
 
 export default class List extends React.Component {
@@ -35,7 +37,7 @@ export default class List extends React.Component {
 
   render() {
     return (
-      <div className="ui center aligned grid">
+      <Grid textAlign='center'>
         {
           this.props.snapshots.map((snapshot) => {
             const { id, url, picture, title, meta } = snapshot;
@@ -51,7 +53,7 @@ export default class List extends React.Component {
             );
           })
         }
-      </div>
+      </Grid>
     );
   }
 }

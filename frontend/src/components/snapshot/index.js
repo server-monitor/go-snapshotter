@@ -1,12 +1,12 @@
 
 import React from 'react';
+import { Grid, Card } from 'stardust';
+
 import Picture from './picture';
 import Control from './control';
 import MetaData from './meta_data';
 
-// import 'semantic-ui-css/semantic.css';
-
-// import semantic from 'semantic-ui-css/semantic.css';
+const { Column } = Grid;
 
 export default class SnapshotIndex extends React.Component {
   getChildContext() {
@@ -21,21 +21,14 @@ export default class SnapshotIndex extends React.Component {
   }
 
   render() {
-    const mobile = 'eight wide mobile';
-    const tablet = 'five wide tablet';
-    const computer = 'four wide computer';
-    const largeScreen = 'three wide large screen';
-
-    // <div className={ `${mobile} ${tablet} ${computer} ${largeScreen} column` }>
-
     return (
-      <div className={ `ui ${mobile} ${tablet} ${computer} ${largeScreen} column` }>
-        <div className='card'>
+      <Column mobile={8} tablet={5} computer={4} largeScreen={3}>
+        <Card>
           <Picture />
           <Control />
           <MetaData />
-        </div>
-      </div>
+        </Card>
+      </Column>
     );
   }
 }
