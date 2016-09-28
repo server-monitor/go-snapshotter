@@ -1,6 +1,9 @@
 import React from 'react';
 import { expect } from 'chai';
 
+import { Grid, Card } from 'stardust';
+const { Column } = Grid;
+
 const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
 
 // Same class name hack...
@@ -22,13 +25,13 @@ describe('Snapshot <SnapshotIndex ... />', function () {
   const largeScreen = 'three wide large screen';
 
   const expectedElement = (
-    <div className={ `ui ${mobile} ${tablet} ${computer} ${largeScreen} column` }>
-      <div className="card">
+    <Column mobile={8} tablet={5} computer={4} largeScreen={3}>
+      <Card>
         <PictureIndex />
         <ControlIndex />
         <MetaDataIndex />
-      </div>
-    </div>
+      </Card>
+    </Column>
   );
 
   const urLoc = 'https//erlang.com';
@@ -36,34 +39,7 @@ describe('Snapshot <SnapshotIndex ... />', function () {
     <SnapshotIndex />,
   );
 
-  // TODO: trying to get rid of test warning (which appears on first run only).
-  // Warning: Failed childContext type: Required child
-  //   context `id` was not specified in `SnapshotIndex`.
-
-  // // .props.children.props.children
-  // info(expectedElement, 'expected');
-  // info(actual, 'actual');
-
   it(shouldEqual(expectedElement), function () {
-    // expect(renderReactElement(
-    //   <SnapshotIndex />,
-    //   { context: { url: urLoc, picture: { path: '/snapshots/pic.jpg' } } }
-    // )).to.eql(expectedElement);
     expect(actual).to.eql(expectedElement);
   });
-
-  // const expectedElement = (
-  //   <div className={ `${mobile} ${tablet} ${computer} ${largeScreen} column` }>
-  //     <div className="card">
-  //       <AnchorSnapshotIndex url={ url } picture={ picture } />
-  //       <MetaDataIndex title={ title } meta={ meta } />
-  //     </div>
-  //   </div>
-  // );
-
-  // it(shouldEqual(expectedElement), function () {
-  //   expect(renderReactElement(
-  //     <SnapshotIndex url={ url } picture={ picture } title={ title } meta={ meta } />
-  //   )).to.eql(expectedElement);
-  // });
 });

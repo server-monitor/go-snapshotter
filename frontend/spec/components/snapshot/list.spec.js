@@ -1,6 +1,8 @@
 import React from 'react';
 import { expect } from 'chai';
 
+import { Grid } from 'stardust';
+
 const {
   inferImport, shouldEqual, renderReactElement, snapshotsFixture,
 } = SpecHelper;
@@ -15,7 +17,7 @@ describe('Snapshots <List ... />', function () {
   const removeSnapshot = () => {};
 
   const expectedElement = (
-    <div className="ui center aligned grid">
+    <Grid textAlign='center'>
       {
         snapshots.map((snapshot) => {
           const { id, url, picture, title, meta } = snapshot;
@@ -31,7 +33,7 @@ describe('Snapshots <List ... />', function () {
           );
         })
       }
-    </div>
+    </Grid>
   );
 
   it(shouldEqual(expectedElement), function () {

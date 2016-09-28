@@ -21,7 +21,7 @@ describe('<Picture ... />', function () {
         src={ picture.path }
         href={ url }
         target='_blank'
-        className='fluid'
+        fluid
       />
     </div>
   );
