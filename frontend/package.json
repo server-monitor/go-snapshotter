@@ -59,12 +59,15 @@
   },
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "gensymlinks": "mkdir www 2>/dev/null; cd www && for file in index.html debug.js; do [ -L \"$file\" ] || ln -sf \"../src/$file\"; done",
+    "prestart": "npm run gensymlinks",
+    "start": "webpack-dev-server --progress --watch --display-error-details --display-cached",
     "test": "mocha --watch --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js spec/helpers/jsdom.js",
     "test:once": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js spec/helpers/jsdom.js",
     "test:all": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --watch --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js spec/helpers/jsdom.js",
-    "dev:hot": "webpack-dev-server --progress --watch --display-error-details --display-cached",
+    "precompile": "mkdir www 2>/dev/null; cd www && for file in index.html debug.js; do /bin/cp --remove-destination \"../src/$file\" .; done",
     "compile": "webpack",
+    "postcompile": "notify-send --expire-time=5000 'npm compile done'",
     "watch": "webpack --watch"
   },
   "repository": "https://github.com/server-monitor/__APP_NAME__",
