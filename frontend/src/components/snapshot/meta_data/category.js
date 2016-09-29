@@ -1,13 +1,9 @@
 import React from 'react';
 
-export default class Category extends React.Component {
-  render() {
-    return (
-      <div>Category: { this.context.meta.category }</div>
-    );
-  }
-}
+const Category = (_, context) => <div>Category: { context.meta.category }</div>;
 
 Category.contextTypes = {
   meta: React.PropTypes.object.isRequired,
 };
+
+export default Category;
