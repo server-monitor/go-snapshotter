@@ -1,6 +1,4 @@
 
-'use strict';
-
 import Chai, { expect } from 'chai';
 import SuperAgent from 'superagent';
 import Sinon from 'sinon';
@@ -8,11 +6,12 @@ import SinonChai from 'sinon-chai';
 
 Chai.use(SinonChai);
 
-SpecHelper.inferImport();
+const Client = require('../../src/external_data_access/client').default;
+// const Client = SpecHelper.inferImport()[0];
 
-describe('Client', function () {
-  describe('Base HTTP client request', function () {
-    describe('makeGetRequest', function () {
+describe('Client', () => {
+  describe('Base HTTP client request', () => {
+    describe('makeGetRequest', () => {
       let getRequest;
       let endProp;
 
@@ -25,7 +24,7 @@ describe('Client', function () {
 
       after(() => { getRequest.restore(); });
 
-      it('should be successful', function () {
+      it('should be successful', () => {
         const options = { url: '/' };
 
         Client.makeGetRequest(options, callback);

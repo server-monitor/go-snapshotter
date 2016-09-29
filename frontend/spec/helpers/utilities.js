@@ -10,12 +10,13 @@ import { info, getConfig } from '../../src/debug';
 export function renderReactElement(rElement, options = null) {
   if (options) {
     return shallow(rElement, options).node;
-  } else {
-    let renderer = require('react-addons-test-utils').createRenderer();
-    renderer.render(rElement);
-
-    return renderer.getRenderOutput();
   }
+
+  const renderer = require('react-addons-test-utils').createRenderer();
+
+  renderer.render(rElement);
+
+  return renderer.getRenderOutput();
 }
 
 export function jsxToString(jsx) {
@@ -48,8 +49,16 @@ export function escSpecDir() {
 }
 
 export function inferImport(...bnamesArg) {
+  // let callerFile;
+  // try {
+  //   throw Error();
+  // } catch (err) {
+  //   callerFile = err.stack.split('\n')[2];
+  // }
+
   const callerFile = new Error().stack.split('\n')[2];
-  const specDirRE = new RegExp('^.*' + specDir());
+  // const specDirRE = new RegExp('^.*' + specDir());
+  const specDirRE = new RegExp(`^.*${specDir()}`);
 
   // ASSUMPTION: ALL CALLERS are located under the spec dir.
   const defaultSrcFileToImport = callerFile.replace(

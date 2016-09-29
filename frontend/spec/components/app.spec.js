@@ -1,4 +1,5 @@
-'use strict';
+
+'use strict'; /// -------------------- .... /////////////////////
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -22,11 +23,17 @@ const {
   inferImport, shouldEqual, renderReactElement, snapshotsFixture,
 } = SpecHelper;
 
-const imports = inferImport('../containers/snapshot/list', '../containers/status/index');
-
-const [App, SnapshotList, Status] = imports;
+const imports = inferImport(
+  '../components/menu/index', '../containers/snapshot/list', '../containers/status/index'
+);
+const [App, Menu, SnapshotList, Status] = imports;
 
 describe('<App ... /> (smoke check)', () => {
+  const jsdom = require('mocha-jsdom');
+
+  // This thing shoves globals like document into the before hook... terrible...
+  jsdom();
+
   it('should render without crashing', () => {
     const containerNode = document.createElement('div');
     ReactDOM.render(
@@ -39,15 +46,15 @@ describe('<App ... /> (smoke check)', () => {
 });
 
 describe('<App ... />', () => {
-  const snapshots = snapshotsFixture();
   const expectedElement = (
     <div>
       <SnapshotList />
+      <Menu />
       <Status />
     </div>
   );
 
-  it(shouldEqual(expectedElement), function () {
+  it(shouldEqual(expectedElement), () => {
     expect(renderReactElement(<App />)).to.eql(expectedElement);
   });
 });

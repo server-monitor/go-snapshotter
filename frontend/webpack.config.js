@@ -108,7 +108,7 @@ module.exports = {
         include: [srcDirResolved],
         loader: 'babel',
         query: {
-          presets: ['react', 'es2015'],
+          presets: ['es2015', 'react'],
         },
       },
 
