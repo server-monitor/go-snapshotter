@@ -1,3 +1,4 @@
+// TODO: to lint, refactor, etc.
 // Still uses modal but not strict modal (shouldCloseOnOverlayClick = false)
 
 import React from 'react';

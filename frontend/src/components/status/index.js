@@ -4,12 +4,12 @@ import { Grid } from 'stardust';
 
 import RequestStatus from './request';
 
-export default class Status extends React.Component {
-  render() {
-    return (
-      <Grid textAlign='center'>
-        <RequestStatus status={ this.props.status }/>
-      </Grid>
-    );
-  }
-}
+const Status = ({ status }) => (
+  <Grid textAlign="center"><RequestStatus status={status} /></Grid>
+);
+
+Status.propTypes = {
+  status: React.PropTypes.shape().isRequired,
+};
+
+export default Status;

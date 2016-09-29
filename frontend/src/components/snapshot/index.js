@@ -34,15 +34,15 @@ SnapshotIndex.propTypes = {
   url: PropTypes.string.isRequired,
   picture: PropTypes.shape().isRequired,
   title: PropTypes.string.isRequired,
-  meta: PropTypes.shape.isRequired,
+  meta: PropTypes.shape().isRequired,
   removeSnapshot: PropTypes.func.isRequired,
 };
 
 SnapshotIndex.childContextTypes = {
   id: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,
-  picture: PropTypes.object.isRequired,
+  picture: PropTypes.shape().isRequired,
   title: PropTypes.string.isRequired,
-  meta: PropTypes.object.isRequired,
+  meta: PropTypes.shape().isRequired,
   removeSnapshot: PropTypes.func.isRequired,
 };
