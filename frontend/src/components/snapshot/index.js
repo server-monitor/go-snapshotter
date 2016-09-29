@@ -10,14 +10,10 @@ const { Column } = Grid;
 
 export default class SnapshotIndex extends React.Component {
   getChildContext() {
-    return {
-      id: this.props.id,
-      url: this.props.url,
-      picture: this.props.picture,
-      title: this.props.title,
-      meta: this.props.meta,
-      removeSnapshot: this.props.removeSnapshot,
-    };
+    /* eslint-disable no-multi-spaces */ // WHY? const/return alignment.
+    const  { id, url, picture, title, meta, removeSnapshot } = this.props;
+    return { id, url, picture, title, meta, removeSnapshot };
+    /* eslint-enable */
   }
 
   render() {
@@ -32,6 +28,15 @@ export default class SnapshotIndex extends React.Component {
     );
   }
 }
+
+SnapshotIndex.propTypes = {
+  id: React.PropTypes.number.isRequired,
+  url: React.PropTypes.string.isRequired,
+  picture: React.PropTypes.shape().isRequired,
+  title: React.PropTypes.string.isRequired,
+  meta: React.PropTypes.shape.isRequired,
+  removeSnapshot: React.PropTypes.func.isRequired,
+};
 
 SnapshotIndex.childContextTypes = {
   id: React.PropTypes.number.isRequired,
