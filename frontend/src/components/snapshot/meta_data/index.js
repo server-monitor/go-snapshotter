@@ -7,15 +7,13 @@ import Progress from './progress';
 
 import style from './index.less';
 
-export default class Index extends React.Component {
-  render() {
-    return (
-      <div className={ style.meta_data }>
-        <Title />
-        <Category />
-        <CurrentTopic />
-        <Progress />
-      </div>
-    );
-  }
-}
+const Index = () => (
+  <div className={style.meta_data}>
+    <Title />
+    <Category />
+    <CurrentTopic />
+    <Progress />
+  </div>
+);
+
+export default Index;
