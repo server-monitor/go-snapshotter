@@ -1,13 +1,9 @@
 import React from 'react';
 
-export default class Title extends React.Component {
-  render() {
-    return (
-      <div>{ this.context.title }</div>
-    );
-  }
-}
+const Title = (_, context) => <div>{context.title}</div>;
 
 Title.contextTypes = {
   title: React.PropTypes.string.isRequired,
 };
+
+export default Title;
