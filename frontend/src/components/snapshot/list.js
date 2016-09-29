@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Grid } from 'stardust';
 
 import SnapshotIndex from './index';
@@ -61,7 +61,7 @@ export default class List extends React.Component {
 }
 
 List.propTypes = {
-  getSnapshots: React.PropTypes.func.isRequired,
-  snapshots: React.PropTypes.shape().isRequired,
-  removeSnapshot: React.PropTypes.func.isRequired,
+  getSnapshots: PropTypes.func.isRequired,
+  snapshots: PropTypes.shape().isRequired,
+  removeSnapshot: PropTypes.func.isRequired,
 };

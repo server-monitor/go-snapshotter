@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Grid, Card } from 'stardust';
 
 import Picture from './picture';
@@ -30,19 +30,19 @@ export default class SnapshotIndex extends React.Component {
 }
 
 SnapshotIndex.propTypes = {
-  id: React.PropTypes.number.isRequired,
-  url: React.PropTypes.string.isRequired,
-  picture: React.PropTypes.shape().isRequired,
-  title: React.PropTypes.string.isRequired,
-  meta: React.PropTypes.shape.isRequired,
-  removeSnapshot: React.PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  url: PropTypes.string.isRequired,
+  picture: PropTypes.shape().isRequired,
+  title: PropTypes.string.isRequired,
+  meta: PropTypes.shape.isRequired,
+  removeSnapshot: PropTypes.func.isRequired,
 };
 
 SnapshotIndex.childContextTypes = {
-  id: React.PropTypes.number.isRequired,
-  url: React.PropTypes.string.isRequired,
-  picture: React.PropTypes.object.isRequired,
-  title: React.PropTypes.string.isRequired,
-  meta: React.PropTypes.object.isRequired,
-  removeSnapshot: React.PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  url: PropTypes.string.isRequired,
+  picture: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  meta: PropTypes.object.isRequired,
+  removeSnapshot: PropTypes.func.isRequired,
 };
