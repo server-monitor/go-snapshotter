@@ -6,10 +6,24 @@ import {
   SET_SNAPSHOTS,
 } from './type';
 
-import { ERROR, REQUEST_STATUS } from '../type_definitions/status';
+import { REQUEST_STATUS } from '../type_definitions/status';
+
+export function setRequestStatus(type, error = null) {
+  return {
+    type: SET_REQUEST_STATUS,
+    payload: { type, error },
+  };
+}
+
+export function setSnapshots(response) {
+  return {
+    type: SET_SNAPSHOTS,
+    payload: response,
+  };
+}
 
 export function getSnapshots() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(setRequestStatus(REQUEST_STATUS.get('initiated')));
 
     return Client.getSnapshots(
@@ -27,23 +41,9 @@ export function getSnapshots() {
   };
 }
 
-export function setSnapshots(response) {
-  return {
-    type: SET_SNAPSHOTS,
-    payload: response,
-  };
-}
-
 export function removeSnapshot(id) {
   return {
     type: REMOVE_SNAPSHOT,
     payload: id,
-  };
-}
-
-export function setRequestStatus(type, error = null) {
-  return {
-    type: SET_REQUEST_STATUS,
-    payload: { type, error: error },
   };
 }
