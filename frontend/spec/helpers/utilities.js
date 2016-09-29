@@ -49,15 +49,7 @@ export function escSpecDir() {
 }
 
 export function inferImport(...bnamesArg) {
-  // let callerFile;
-  // try {
-  //   throw Error();
-  // } catch (err) {
-  //   callerFile = err.stack.split('\n')[2];
-  // }
-
   const callerFile = new Error().stack.split('\n')[2];
-  // const specDirRE = new RegExp('^.*' + specDir());
   const specDirRE = new RegExp(`^.*${specDir()}`);
 
   // ASSUMPTION: ALL CALLERS are located under the spec dir.

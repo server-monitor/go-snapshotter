@@ -1,6 +1,4 @@
 
-'use strict'; /// -------------------- .... /////////////////////
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { expect } from 'chai';
@@ -17,10 +15,8 @@ const store = createStore(
   applyMiddleware(ReduxThunk)
 );
 
-// ...
-
 const {
-  inferImport, shouldEqual, renderReactElement, snapshotsFixture,
+  inferImport, shouldEqual, renderReactElement,
 } = SpecHelper;
 
 const imports = inferImport(

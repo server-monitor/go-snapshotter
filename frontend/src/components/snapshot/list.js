@@ -15,7 +15,7 @@ export default class List extends React.Component {
 
     const config = getConfig() || require('config');
 
-    if (config.PRODUCTION) {
+    if (config.production) {
       newPath = pPath;
     } else {
       if (process.env.LOADED_MOCHA_OPTS) {

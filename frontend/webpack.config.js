@@ -1,4 +1,3 @@
-
 // https://semaphoreci.com/community/tutorials/testing-react-components-with-enzyme-and-mocha
 // +
 // http://andrewhfarmer.com/build-your-own-starter/#4-webpack
@@ -9,7 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const PRODUCTION = false;
+const production = false;
 
 // TODO...
 // const doNotMangleNames = 'do_not_mangle_names';
@@ -88,7 +87,7 @@ module.exports = {
       // If true, webpack dev server will not have access to
       //   the backend which is typically configured at port 5000.
       //   The webpack dev server is listening on port 8080.
-      PRODUCTION: PRODUCTION,
+      production,
       prod_test_fixture_backend: 'http://localhost:5000',
 
       // backend: 'https://snapshizzy.herokuapp.com',

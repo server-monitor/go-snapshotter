@@ -13,7 +13,7 @@ const Client = {
 
     const config = getConfig() || require('config');
 
-    if (!config.PRODUCTION) urLoc = config.backend + urLoc;
+    if (!config.production) urLoc = config.backend + urLoc;
 
     return Client.makeGetRequest({ url: urLoc }, (error, response) => {
       let editedRes = null;

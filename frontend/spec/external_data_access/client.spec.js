@@ -7,7 +7,6 @@ import SinonChai from 'sinon-chai';
 Chai.use(SinonChai);
 
 const Client = require('../../src/external_data_access/client').default;
-// const Client = SpecHelper.inferImport()[0];
 
 describe('Client', () => {
   describe('Base HTTP client request', () => {

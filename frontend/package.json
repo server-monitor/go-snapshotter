@@ -63,14 +63,12 @@
     "gensymlinks": "mkdir www 2>/dev/null; cd www && for file in index.html debug.js; do ln -sf \"../src/$file\"; done",
     "prestart": "npm run gensymlinks",
     "start": "webpack-dev-server --progress --watch --display-error-details --display-cached",
-    "test":                                                                  "mocha         --growl --require babel-register --require ignore-styles spec/helpers/utilities.js",
-    "test:all:once":   "clear && find spec/ -type f -name '*.spec.js' | xargs mocha         --growl --require babel-register --require ignore-styles spec/helpers/utilities.js",
-    "test:all":        "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --watch --growl --require babel-register --require ignore-styles spec/helpers/utilities.js",
-    "FUJSON:test:all": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha --watch --growl --require babel-register --require ignore-styles --require spec/helpers/utilities.js",
+    "test": "                                                               mocha         --growl --require babel-register --require ignore-styles spec/helpers/utilities.js",
+    "test:all:once": "clear && find spec/ -type f -name '*.spec.js' | xargs mocha         --growl --require babel-register --require ignore-styles spec/helpers/utilities.js",
+    "test:all": "     clear && find spec/ -type f -name '*.spec.js' | xargs mocha --watch --growl --require babel-register --require ignore-styles spec/helpers/utilities.js",
     "precompile": "mkdir www 2>/dev/null; cd www && for file in index.html debug.js; do /bin/cp --remove-destination \"../src/$file\" .; done",
     "compile": "webpack",
-    "postcompile": "notify-send --expire-time=5000 'npm compile done'",
-    "watch": "webpack --watch"
+    "postcompile": "notify-send --expire-time=10000 'npm compile done'"
   },
   "repository": "https://github.com/server-monitor/__APP_NAME__",
   "description": "..."

@@ -1,15 +1,9 @@
 export default function snapshotsFixture(callback) {
-  // require('./jsdom.js');
-  // const jsdom = require('mocha-jsdom');
-
-  // jsdom();
-
   const config = getConfig() || require('config');
 
-  const host = config.PRODUCTION ? config.prod_test_fixture_backend : config.backend;
+  const host = config.production ? config.prod_test_fixture_backend : config.backend;
 
   const snapshotsEP = `${host}/snapshots`;
-  // const snapshotsEP = host + '/snapshots';
 
   let request = require('superagent');
 
@@ -21,14 +15,17 @@ export default function snapshotsFixture(callback) {
       const snapshots = JSON.parse(responseText);
 
       if (!snapshots) {
-        // console.log('ERROR: JSON parsing of responseText failed...');
-        // console.log(responseText);
-        throw Error();
+        /* eslint-disable no-console */
+        //   WHY? Error does not display objects more accurately than console.log.
+        console.log('ERROR: JSON parsing of responseText failed...');
+        console.log(responseText);
+        /* eslint-enable */
+        throw Error('See console log ^^^');
       }
 
       let snapshotsWithPicHack;
 
-      if (config.PRODUCTION) {
+      if (config.production) {
         snapshotsWithPicHack = snapshots;
       } else {
         snapshotsWithPicHack = snapshots.map((snapshot) => {
@@ -40,31 +37,4 @@ export default function snapshotsFixture(callback) {
       callback(snapshotsWithPicHack);
     }
   );
-
-  // let request = new XMLHttpRequest();
-  // request.open('GET', snapshotsEP, false);
-  // request.send(null);
-
-  // if (request.status != 200) {
-  //   console.log(`ERROR: GET '${snapshotsEP}' failed...`);
-  //   console.log(request);
-
-  //   throw Error();
-  // }
-
-  // const responseText = request.responseText;
-  // const snapshots = JSON.parse(responseText);
-
-  // if (!snapshots) {
-  //   console.log('ERROR: JSON parsing of responseText failed...');
-  //   console.log(responseText);
-  //   throw Error();
-  // }
-
-  // if (config.PRODUCTION) return snapshots;
-
-  // return snapshots.map((snapshot) => {
-  //   snapshot.picture.path = `${host}/${snapshot.picture.path}`;
-  //   return snapshot;
-  // });
 }
