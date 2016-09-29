@@ -1,15 +1,15 @@
 import React from 'react';
 
-export default class CurrentTopic extends React.Component {
-  render() {
-    return (
-      <div>
-        Current topic: Fortan and the future of your programming career
-      </div>
-    );
-  }
-}
+const CurrentTopic = () => (
+  <div>Current topic: Fortan and you</div>
+);
+
+// const CurrentTopic = (_, context) => (
+//   <div>Current topic: {context.currentTopic}</div>
+// );
 
 // CurrentTopic.contextTypes = {
-//   CurrentTopic: React.PropTypes.string.isRequired,
+//   currentTopic: React.PropTypes.string,
 // };
+
+export default CurrentTopic;
