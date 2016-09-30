@@ -8,7 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const production = false;
+const production = true;
 
 // TODO...
 // const doNotMangleNames = 'do_not_mangle_names';

@@ -36878,7 +36878,13 @@ html.ios body {
 
 /*******************************
          Site Overrides
-*******************************/.less_index__picture_container___34HNk {
+*******************************/.less_index__menu___2Orb4 {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  z-index: 2;
+}
+.less_index__picture_container___34HNk {
   overflow: hidden;
   height: 380px;
   width: auto;

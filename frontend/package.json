@@ -61,6 +61,7 @@
   },
   "main": "webpack.config.js",
   "scripts": {
+    "lint": "eslint --config /main/system/javascript/DOT.eslintrc.yml",
     "gensymlinks": "mkdir www 2>/dev/null; cd www && for file in index.html debug.js; do ln -sf \"../src/$file\"; done",
     "prestart": "npm run gensymlinks",
     "start": "webpack-dev-server --progress --watch --display-error-details --display-cached",
