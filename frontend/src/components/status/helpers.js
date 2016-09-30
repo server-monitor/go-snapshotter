@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export default function buildMessageElement(message, messageList) {
+export function buildMessageElement(message, messageList) {
   let messageElement = '';
 
   if (message) {
@@ -16,3 +16,7 @@ export default function buildMessageElement(message, messageList) {
 
   return messageElement;
 }
+
+export default {
+  buildMessageElement,
+};

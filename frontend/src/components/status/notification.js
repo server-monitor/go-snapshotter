@@ -1,17 +1,16 @@
 
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import { OrderedSet } from 'immutable';
+import { OrderedSet as orderedSet } from 'immutable';
 import { NotificationStack } from 'react-notification';
 
 import './notification.less';
 
-export default class NotificationWrapper extends Component {
+export default class notificationWrapper extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      notifications: OrderedSet(),
+      notifications: orderedSet(),
 
       // This is just used for the sake of an example to make sure
       // notifications have unique keys. In production, you should have
@@ -28,28 +27,28 @@ export default class NotificationWrapper extends Component {
 
   addNotification({ message, dismissAfter }) {
     const { notifications, count } = this.state;
-    const id = notifications.size + 1;
+    // const id = notifications.size + 1;
     const newCount = count + 1;
     return this.setState({
       count: newCount,
       notifications: notifications.add({
-        message: message,
+        message,
         key: newCount,
         action: 'x',
-        dismissAfter: dismissAfter,
+        dismissAfter,
         onClick: () => this.removeNotification(newCount),
       }),
     });
   }
 
-  removeNotification (count) {
+  removeNotification(count) {
     const { notifications } = this.state;
     this.setState({
       notifications: notifications.filter(n => n.key !== count),
     });
   }
 
-  render () {
+  render() {
     // After a few sec of first run of testing...
     //   Warning: Exception thrown by hook while handling onSetChildren:
     //   Invariant Violation: Expected onBeforeMountComponent() parent and
@@ -57,8 +56,7 @@ export default class NotificationWrapper extends Component {
     //   On onDismiss={notification...} line
 
     return (
-      // <div className={ style.status_notification }>
-      <div className='status_notification'>
+      <div className="status_notification">
         <NotificationStack
           notifications={this.state.notifications.toArray()}
           onDismiss={notification => this.setState({
