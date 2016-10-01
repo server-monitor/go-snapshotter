@@ -3,12 +3,9 @@ import { expect } from 'chai';
 
 import { Image } from 'stardust';
 
-const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
-inferImport();
+describe('<Picture ... />', () => {
+  const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
 
-const PictureIndex = inferImport()[0];
-
-describe('<Picture ... />', function () {
   const picture = { path: '/snapshots/pic.jpg' };
   const url = 'https://elixirlang.org';
 
@@ -16,17 +13,19 @@ describe('<Picture ... />', function () {
     // Used to be ...
     // <div className='picture_container'>
     // Changed to ...=undefined because localized CSS => actual = undef...
-    <div className={ undefined }>
+    <div className={undefined}>
       <Image
-        src={ picture.path }
-        href={ url }
-        target='_blank'
+        src={picture.path}
+        href={url}
+        target="_blank"
         fluid
       />
     </div>
   );
 
-  it(shouldEqual(expectedElement), function () {
+  it(shouldEqual(expectedElement), () => {
+    const PictureIndex = inferImport()[0];
+
     expect(renderReactElement(
       <PictureIndex />,
       { context: { picture, url } }

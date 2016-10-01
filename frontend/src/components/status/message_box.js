@@ -106,9 +106,7 @@ export default class modalMessageBox extends React.Component {
 }
 
 modalMessageBox.propTypes = {
-  messageType: PropTypes.shape(
-
-  ),
+  messageType: PropTypes.shape(),
   header: PropTypes.string,
   message: PropTypes.string,
   messageList: PropTypes.arrayOf(PropTypes.string),

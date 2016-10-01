@@ -3,15 +3,15 @@ import { expect } from 'chai';
 
 import { Grid } from 'stardust';
 
-const {
-  inferImport, renderReactElement, snapshotsFixture,
-  // shouldEqual,
-} = SpecHelper;
-
-const imports = inferImport('./index');
-const [List, SnapshotIndex] = imports;
-
 describe('Snapshots <List ... />', () => {
+  const {
+    inferImport, renderReactElement, snapshotsFixture,
+    // shouldEqual,
+  } = SpecHelper;
+
+  const imports = inferImport('./index');
+  const [List, SnapshotIndex] = imports;
+
   let expectedElement;
   let snapshotsOutsideTheCallback;
 
@@ -23,7 +23,7 @@ describe('Snapshots <List ... />', () => {
       snapshotsOutsideTheCallback = snapshots;
 
       expectedElement = (
-        <Grid textAlign='center'>
+        <Grid textAlign="center">
           {
             snapshots.map((snapshot) => {
               const { id, url, picture, title, meta } = snapshot;

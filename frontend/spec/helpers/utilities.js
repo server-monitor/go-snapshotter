@@ -1,8 +1,14 @@
 
 import Path from 'path';
+import FS from 'fs';
+import Inflection from 'inflection';
 
-import React from 'react';
+// Apparently, this isn't used.
+// import React from 'react';
+
 import { shallow } from 'enzyme';
+import reactTestUtils from 'react-addons-test-utils';
+import jsxToString from 'jsx-to-string';
 
 import snapshotsFixture from './snapshots_fixture';
 import { info, getConfig } from '../../src/debug';
@@ -11,22 +17,20 @@ export function renderReactElement(rElement, options = null) {
   if (options) {
     return shallow(rElement, options).node;
   }
-
-  const renderer = require('react-addons-test-utils').createRenderer();
-
+  const renderer = reactTestUtils.createRenderer();
   renderer.render(rElement);
-
   return renderer.getRenderOutput();
 }
 
-export function jsxToString(jsx) {
-  return require('jsx-to-string')(jsx);
-}
+// export function jsxToString(jsx) {
+//   return jsxToString(jsx);
+//   // return require('jsx-to-string')(jsx);
+// }
 
 export function shouldEqual(element) {
   const jsxString = jsxToString(element)
                       .replace(/\n/g, '')
-                      .replace(/  /g, '')
+                      .replace(/[ ]{2,}/g, '')
                       .replace(/^(.{94}).+$/, '$1 ... LONG, CUT-OFF ...');
 
   return `should equal "${jsxString}"`;
@@ -63,25 +67,27 @@ export function inferImport(...bnamesArg) {
     bnames = ['', ...bnamesArg];
   }
 
-  let imports = [];
+  const imports = [];
 
   bnames.forEach((bname) => {
     let srcFileToImport = defaultSrcFileToImport;
 
     if (bname) {
-      srcFileToImport = Path.join(Path.dirname(defaultSrcFileToImport), bname + '.js');
+      srcFileToImport = Path.join(Path.dirname(defaultSrcFileToImport), `${bname}.js`);
     }
 
-    if (!require('fs').existsSync(srcFileToImport)) {
+    if (!FS.existsSync(srcFileToImport)) {
       throw Error(`src file to import '${srcFileToImport}' does not exist`);
     }
 
-    const inflection = require('inflection');
-    const infClassName = inflection.camelize(
+    const infClassName = Inflection.camelize(
       Path.basename(srcFileToImport, '.js')
     );
 
+    /* eslint-disable import/no-dynamic-require, global-require */
+    // WHY? Because this is the thing that allows us the RSpec-y auto import behavior
     const reqRet = require(srcFileToImport);
+      /* eslint-enable */
     let iObj;
 
     if (reqRet.default) {

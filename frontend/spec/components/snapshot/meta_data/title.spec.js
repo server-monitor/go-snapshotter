@@ -1,14 +1,15 @@
 import React from 'react';
 import { expect } from 'chai';
 
-const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
-inferImport();
+describe('<Title ... />', () => {
+  const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
 
-describe('<Title ... />', function () {
   const title = 'Some title';
   const expectedElement = <div>{ title }</div>;
 
-  it(shouldEqual(expectedElement), function () {
+  it(shouldEqual(expectedElement), () => {
+    const Title = inferImport()[0];
+
     expect(renderReactElement(
       <Title />,
       { context: { title } }

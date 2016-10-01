@@ -1,15 +1,14 @@
 import React from 'react';
 import { expect } from 'chai';
 
-const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
+describe('<Category ... />', () => {
+  const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
 
-inferImport();
-
-describe('<Category ... />', function () {
   const category = 'Some category';
   const expectedElement = <div>Category: { category }</div>;
 
-  it(shouldEqual(expectedElement), function () {
+  it(shouldEqual(expectedElement), () => {
+    const Category = inferImport()[0];
     expect(renderReactElement(
       <Category />,
       { context: { meta: { category } } }

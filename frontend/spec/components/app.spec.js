@@ -8,6 +8,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
+import mochaJSDom from 'mocha-jsdom';
+
 import rootReducer from '../../src/reducers';
 
 const store = createStore(
@@ -25,10 +27,8 @@ const imports = inferImport(
 const [App, Menu, SnapshotList, Status] = imports;
 
 describe('<App ... /> (smoke check)', () => {
-  const jsdom = require('mocha-jsdom');
-
   // This thing shoves globals like document into the before hook... terrible...
-  jsdom();
+  mochaJSDom();
 
   it('should render without crashing', () => {
     const containerNode = document.createElement('div');

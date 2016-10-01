@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { getSnapshots, removeSnapshot } from '../../actions';
 import List from '../../components/snapshot/list';
 
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators(
     { getSnapshots, removeSnapshot },
     dispatch
   );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   snapshots: state.snapshots,
 });
 

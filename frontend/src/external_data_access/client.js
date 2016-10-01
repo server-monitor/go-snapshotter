@@ -1,23 +1,24 @@
 
-const Client = {
-  makeGetRequest: (options, callback) => {
-    const request = require('superagent');
+import Request from 'superagent';
 
-    return request
+const Client = {
+  makeGetRequest: (options, callback) => (
+    Request
       .get(options.url)
-      .end(callback);
-  },
+      .end(callback)
+  ),
 
   getSnapshots: (callback) => {
     let urLoc = '/snapshots';
 
+    /* eslint-disable global-require, import/no-extraneous-dependencies, import/no-unresolved */
+    // WHY? The back-end hack, no file associated, injected by Webpack externals.
     const config = getConfig() || require('config');
+    /* eslint-enable */
 
     if (!config.production) urLoc = config.backend + urLoc;
 
     return Client.makeGetRequest({ url: urLoc }, (error, response) => {
-      let editedRes = null;
-
       if (error) {
         callback(error, null);
       } else {

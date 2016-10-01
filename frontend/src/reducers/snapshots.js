@@ -1,4 +1,5 @@
-import * as Immutable from 'immutable';
+
+import { List as immuList } from 'immutable';
 
 import {
   // REQUEST_SNAPSHOTS, RECEIVE_SNAPSHOTS,
@@ -15,16 +16,19 @@ import {
 //   }
 // };
 
-const snapshots = (state = Immutable.List(), action) => {
+const snapshots = (state = immuList(), action) => {
   switch (action.type) {
-    // case REQUEST_SNAPSHOTS:
-    //   return state;
-    case REMOVE_SNAPSHOT:
-      return state.toSeq().filter((snapshot) => snapshot.id !== action.payload).toList();
-    case SET_SNAPSHOTS:
-      return Immutable.List(action.payload);
-    default:
-      return state;
+  // case REQUEST_SNAPSHOTS:
+  //   return state;
+
+  case REMOVE_SNAPSHOT:
+    return state.toSeq().filter(snapshot => snapshot.id !== action.payload).toList();
+
+  case SET_SNAPSHOTS:
+    return immuList(action.payload);
+
+  default:
+    return state;
   }
 };
 

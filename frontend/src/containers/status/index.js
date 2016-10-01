@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { setRequestStatus } from '../../actions';
 import Component from '../../components/status';
 
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators(
     { setRequestStatus },
     dispatch
   );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   status: state.status,
 });
 

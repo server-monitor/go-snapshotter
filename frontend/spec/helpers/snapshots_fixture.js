@@ -1,13 +1,16 @@
+import Request from 'superagent';
+
 export default function snapshotsFixture(callback) {
+  /* eslint-disable global-require, import/no-extraneous-dependencies, import/no-unresolved */
+  // WHY? The back-end hack, no file associated, injected by Webpack externals.
   const config = getConfig() || require('config');
+  /* eslint-enable */
 
   const host = config.production ? config.prod_test_fixture_backend : config.backend;
 
   const snapshotsEP = `${host}/snapshots`;
 
-  let request = require('superagent');
-
-  request.get(snapshotsEP).end(
+  Request.get(snapshotsEP).end(
     (err, response) => {
       if (err) throw Error(err);
 
@@ -29,8 +32,11 @@ export default function snapshotsFixture(callback) {
         snapshotsWithPicHack = snapshots;
       } else {
         snapshotsWithPicHack = snapshots.map((snapshot) => {
-          snapshot.picture.path = `${host}/${snapshot.picture.path}`;
-          return snapshot;
+          // !!DEBUG, HACK: watch out for this if Snapshot should
+          //   contain any non-JSON.stringifiable keys!!
+          const terrible = JSON.parse(JSON.stringify(snapshot));
+          terrible.picture.path = `${host}/${snapshot.picture.path}`;
+          return terrible;
         });
       }
 
