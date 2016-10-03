@@ -8,7 +8,7 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const production = false;
+const envParamsHack = require('./envParamsHack');
 
 // TODO...
 // const doNotMangleNames = 'do_not_mangle_names';
@@ -62,7 +62,10 @@ module.exports = {
     // port: 8081,
 
     proxy: {
-      '*': 'http://localhost:5000',
+      '*': envParamsHack.backend,
+      // OR...
+      // '*': envParamsHack.prod_test_fixture_backend
+      // '*': 'http://localhost:5000'
     },
   },
 
