@@ -4,8 +4,8 @@
 // +
 // https://github.com/webpack/webpack/issues/1151
 
-const path = require('path');
 const webpack = require('webpack');
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const production = false;
@@ -33,12 +33,12 @@ const lessLoader = ExtractTextPlugin.extract(
   // modules&importLoaders=1&localIdentName
 );
 
-const srcDirResolved = path.resolve(__dirname, 'src');
-const wwwDirResolved = path.resolve(__dirname, 'www');
-const nodeModulesDirResolved = path.resolve(__dirname, 'node_modules');
+const srcDir = path.resolve(__dirname, 'src');
+const wwwDir = path.resolve(__dirname, 'www');
+const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
-  context: srcDirResolved,
+  context: srcDir,
   // context: path.join(__dirname, 'src'),
   entry: [
     'babel-polyfill',
@@ -46,7 +46,7 @@ module.exports = {
   ],
 
   output: {
-    path: wwwDirResolved,
+    path: wwwDir,
     // path: path.join(__dirname, 'www'),
     filename: 'bundle.js',
     // publicPath: 'http://localhost:8080/www',
@@ -57,9 +57,13 @@ module.exports = {
     hot: true,
     inline: true,
     historyApiFallback: true,
-    contentBase: wwwDirResolved,
+    contentBase: wwwDir,
     // contentBase: path.join(__dirname, 'www'),
     // port: 8081,
+
+    proxy: {
+      '*': 'http://localhost:5000',
+    },
   },
 
   // File/line number info missing if this is not enabled.
@@ -67,13 +71,13 @@ module.exports = {
 
   resolveLoader: {
     root: [
-      nodeModulesDirResolved,
+      nodeModulesDir,
       // path.join(__dirname, 'node_modules'),
     ],
   },
   resolve: {
     root: [
-      nodeModulesDirResolved,
+      nodeModulesDir,
       // path.join(__dirname, 'node_modules'),
     ],
     extensions: ['', '.js', '.jsx'],
@@ -82,17 +86,17 @@ module.exports = {
   // https://stackoverflow.com/questions/30568796/how-to-store-configuration-file-and-read-it-using-react
   // https://stackoverflow.com/questions/36065832/webpack-include-configuration-file-as-external-resource?noredirect=1#comment59778282_36065832
   externals: {
-    config: JSON.stringify({
-      // If true, prod_test_fixture_backend will be used.
-      // If true, webpack dev server will not have access to
-      //   the backend which is typically configured at port 5000.
-      //   The webpack dev server is listening on port 8080.
-      production,
-      prod_test_fixture_backend: 'http://localhost:5000',
+    // config: JSON.stringify({
+    //   // If true, prod_test_fixture_backend will be used.
+    //   // If true, webpack dev server will not have access to
+    //   //   the backend which is typically configured at port 5000.
+    //   //   The webpack dev server is listening on port 8080.
+    //   production,
+    //   prod_test_fixture_backend: 'http://localhost:5000',
 
-      // backend: 'https://snapshizzy.herokuapp.com',
-      backend: 'http://localhost:5000',
-    }),
+    //   // backend: 'https://snapshizzy.herokuapp.com',
+    //   backend: 'http://localhost:5000',
+    // }),
 
     cheerio: 'window',
     'react/lib/ExecutionEnvironment': true,
@@ -103,8 +107,8 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        // exclude: /node_modules/,
-        include: [srcDirResolved],
+        exclude: /node_modules/,
+        include: [srcDir],
         loader: 'babel',
         query: {
           presets: ['es2015', 'react'],
@@ -113,8 +117,8 @@ module.exports = {
 
       {
         test: /\.less$/,
-        // exclude: /node_modules/,
-        include: [srcDirResolved],
+        exclude: /node_modules/,
+        include: [srcDir],
         loader: lessLoader,
       },
 
@@ -131,18 +135,18 @@ module.exports = {
 
       // ... temporary (???) for semantic-ui-css, rc-slider, others...
       {
-        test: /\.css$/,
-        // test: /(semantic\-ui\-css|rc-slider).+?\.css$/,
+        // test: /\.css$/,
+        test: /(semantic\-ui\-css|rc-slider).+?\.css$/,
         // include key originally not present.
-        include: [nodeModulesDirResolved],
+        // include: [nodeModulesDir],
         loader: ExtractTextPlugin.extract('css'),
       },
 
       // ... if it breaks Semantic UI CSS and others, just use ExtractTextPlugin.extract('css').
       {
         test: /\.css$/,
-        // exclude: /node_modules/,
-        include: [srcDirResolved],
+        exclude: /node_modules/,
+        include: [srcDir],
         loader: ExtractTextPlugin.extract(
           'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
         ),

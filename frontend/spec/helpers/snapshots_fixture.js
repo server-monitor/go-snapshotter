@@ -10,6 +10,8 @@ export default function snapshotsFixture(callback) {
 
   const snapshotsEP = `${host}/snapshots`;
 
+  // const snapshotsEP = '/snapshots';
+
   Request.get(snapshotsEP).end(
     (err, response) => {
       if (err) throw Error(err);
@@ -25,6 +27,8 @@ export default function snapshotsFixture(callback) {
         /* eslint-enable */
         throw Error('See console log ^^^');
       }
+
+      // callback(snapshots);
 
       let snapshotsWithPicHack;
 

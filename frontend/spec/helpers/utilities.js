@@ -11,6 +11,8 @@ import reactTestUtils from 'react-addons-test-utils';
 import jsxToString from 'jsx-to-string';
 
 import snapshotsFixture from './snapshots_fixture';
+
+// import { info } from '../../src/debug';
 import { info, getConfig } from '../../src/debug';
 
 export function renderReactElement(rElement, options = null) {

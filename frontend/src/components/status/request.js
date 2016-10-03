@@ -7,10 +7,12 @@ const RequestStatus = (props) => {
   const { status } = props;
   const { error } = status;
 
+  // const error = {
+  //   message: 'Test stub error obj\nLine 2 of test stub error obj'
+  // };
+
   if (error) {
     info(error, 'ERROR...');
-
-    // const str = JSON.stringify(error);
 
     // https://stackoverflow.com/questions/31163693/how-to-conditionally-add-attributes-to-react-components
     // ...inputProps

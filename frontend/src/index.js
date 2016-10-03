@@ -5,6 +5,9 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
+import './debug';
+// require('./debug');
+
 import App from './components/app';
 import rootReducer from './reducers';
 
@@ -15,9 +18,22 @@ const store = createStore(
   applyMiddleware(ReduxThunk)
 );
 
-ReactDOM.render(
+const app = (
   <Provider store={store}>
     <App />
-  </Provider>,
+  </Provider>
+);
+
+info(app, 'the app');
+
+ReactDOM.render(
+  app,
   document.getElementById('app')
 );
+
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('app')
+// );
