@@ -1,37 +1,86 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
+import { AppContainer } from 'react-hot-loader';
+
 import './debug';
-// require('./debug');
 
 import App from './components/app';
 import rootReducer from './reducers';
 
 import './index.less';
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(ReduxThunk)
-);
+import reduxDevHotReload from './store/reduxDevHotReload';
 
-const app = (
-  <Provider store={store}>
-    <App />
-  </Provider>
-);
+const store = reduxDevHotReload();
+// const store = createStore(
+//   rootReducer,
+//   applyMiddleware(ReduxThunk)
+// );
 
-info(app, 'the app');
+// START: DUMMY, WORKS...
+// const Dumdum = require('./dumdum').default;
 
-ReactDOM.render(
-  app,
+// // render(
+// //   <Dumdum />,
+// //   document.getElementById('app')
+// // );
+
+// render(
+//   <AppContainer>
+//     <Dumdum />
+//   </AppContainer>,
+//   document.getElementById('app')
+// );
+
+// if (module.hot) {
+//   module.hot.accept('./dumdum', () => {
+//     /* eslint-disable global-require */
+//     const DCont = require('./dumdum').default;
+//     /* eslint-enable */
+
+//     render(
+//       <AppContainer>
+//         <DCont />
+//       </AppContainer>,
+//       document.getElementById('app')
+//     );
+//   });
+// }
+// END: DUMMY
+
+render(
+  <AppContainer>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </AppContainer>,
   document.getElementById('app')
 );
 
-// ReactDOM.render(
+if (module.hot) {
+  module.hot.accept('./components/app', () => {
+    /* eslint-disable global-require */
+    const HotApp = require('./components/app').default;
+    /* eslint-enable */
+
+    render(
+      <AppContainer>
+        <Provider store={store}>
+          <HotApp />
+        </Provider>
+      </AppContainer>,
+      document.getElementById('app')
+    );
+  });
+}
+
+// Original
+// render(
 //   <Provider store={store}>
 //     <App />
 //   </Provider>,

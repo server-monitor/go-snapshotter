@@ -18,7 +18,7 @@ export default class SnapshotIndex extends React.Component {
 
   render() {
     return (
-      <Column mobile={8} tablet={5} computer={4} largeScreen={3}>
+      <Column mobile={8} tablet={6} computer={5} largeScreen={4}>
         <Card>
           <Picture />
           <Control />

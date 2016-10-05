@@ -6,7 +6,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
-const extractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const envParamsHack = require('./envParamsHack');
 
@@ -14,7 +14,7 @@ const envParamsHack = require('./envParamsHack');
 // const doNotMangleNames = 'do_not_mangle_names';
 
 const preProc = 'less';
-const lessLoader = extractTextPlugin.extract(
+const lessLoader = ExtractTextPlugin.extract(
   // Use this if you don't want to add [name, local, hash...] to class names.
   // 'css?sourceMap!less?sourceMap' // names aren't mangled.
 
@@ -39,10 +39,23 @@ const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
   context: srcDir,
+
   // context: path.join(__dirname, 'src'),
+  // entry: [
+  //   'babel-polyfill',
+  //   './index.js',
+  // ],
+
   entry: [
-    'babel-polyfill',
-    './index.js',
+    // I don't know about these two. HMR seems to work without them.
+    // https://stackoverflow.com/questions/24581873/what-exactly-is-hot-module-replacement-in-webpack
+    // 'webpack/hot/dev-server',
+
+    'webpack-dev-server/client?http://localhost:8080',
+    // For React Hot Loader
+    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+    'react-hot-loader/patch',
+    './index.js'
   ],
 
   output: {
@@ -122,7 +135,7 @@ module.exports = {
       //   loader: 'css?sourceMap!less?sourceMap', },
 
       // // ... temporary (???) for rc-slider...
-      // { test: /\.css$/, loader: extractTextPlugin.extract('css') },
+      // { test: /\.css$/, loader: ExtractTextPlugin.extract('css') },
 
       // ... temporary (???) for semantic-ui-css, rc-slider, others...
       {
@@ -130,15 +143,15 @@ module.exports = {
         test: /(semantic\-ui\-css|rc-slider).+?\.css$/,
         // include key originally not present.
         // include: [nodeModulesDir],
-        loader: extractTextPlugin.extract('css'),
+        loader: ExtractTextPlugin.extract('css'),
       },
 
-      // ... if it breaks Semantic UI CSS and others, just use extractTextPlugin.extract('css').
+      // ... if it breaks Semantic UI CSS and others, just use ExtractTextPlugin.extract('css').
       {
         test: /\.css$/,
         exclude: /node_modules/,
         include: [srcDir],
-        loader: extractTextPlugin.extract(
+        loader: ExtractTextPlugin.extract(
           'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
         ),
       },
@@ -154,7 +167,6 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-
-    new extractTextPlugin('bundle.css', { allChunks: true }),
+    new ExtractTextPlugin('bundle.css', { allChunks: true }),
   ],
 };

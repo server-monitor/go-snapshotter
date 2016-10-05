@@ -24,13 +24,13 @@ export default class MenuIndex extends React.Component {
           Login
         </Menu.Item>
 
-        <Menu.Item name="messages" active={activeItem === 'messages'} onClick={this.handleItemClick}>
-          <Label color="teal">51</Label>
-          Messages
+        <Menu.Item name="new" active={activeItem === 'new'} onClick={this.handleItemClick}>
+          <Label color="teal">14</Label>
+          New since 4 days ago
         </Menu.Item>
 
         <Menu.Item name="updates" active={activeItem === 'updates'} onClick={this.handleItemClick}>
-          <Label>1</Label>
+          <Label>4</Label>
           Updates
         </Menu.Item>
         <Menu.Item>

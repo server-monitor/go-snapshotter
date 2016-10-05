@@ -53,7 +53,8 @@ module.exports = (config) => {
 
       // ...
       './spec/helpers/utilities.js',
-      './spec/external_data_access/**/*.spec.js',
+      './spec/**/*.spec.js',
+      // './spec/external_data_access/**/*.spec.js',
       // './spec/components/**/*.spec.js',
       // './spec/components/snapshot/**/*.spec.js',
       // './spec/components/snapshot/picture/*.spec.js',
