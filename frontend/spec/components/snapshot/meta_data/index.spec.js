@@ -1,22 +1,24 @@
 import React from 'react';
 import { expect } from 'chai';
 
+/* eslint-disable import/no-unresolved, import/extensions */
+import MetadataIndex from 'components/snapshot/meta_data/index';
+import Title from 'components/snapshot/meta_data/title';
+import Category from 'components/snapshot/meta_data/category';
+import CurrentTopic from 'components/snapshot/meta_data/current_topic';
+import Progress from 'components/snapshot/meta_data/progress';
+
+import style from 'components/snapshot/meta_data/index.less';
+/* eslint-enable */
+
 describe('Meta data <MetadataIndex ... />', () => {
-  const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
-  // Same class name hack...
-  // Hack for now. Don't know why this gets lost (overwritten somehow by the
-  //   other "MetadataIndex (anchor)"?)
-  // Ideally, it should just be inferImport('title', 'category');
-  //   and the MetadataIndex object is autovivified.
-  // const MetadataIndex = inferImport('title', 'category', 'current_topic', 'progress')[0];
-  const imports = inferImport('title', 'category', 'current_topic', 'progress');
-  const [MetadataIndex, Title, Category, CurrentTopic, Progress] = imports;
+  const { shouldEqual, renderReactElement } = SpecHelper;
 
   const expectedElement = (
     // Used to be ...
     // <div className='index' or 'meta_data'>
     // Changed to ...=undefined because localized CSS => actual = undef...
-    <div className={undefined}>
+    <div className={style.meta_data}>
       <Title />
       <Category />
       <CurrentTopic />

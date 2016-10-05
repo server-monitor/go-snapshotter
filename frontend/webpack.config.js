@@ -6,7 +6,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractTextPlugin = require('extract-text-webpack-plugin');
 
 const envParamsHack = require('./envParamsHack');
 
@@ -14,7 +14,7 @@ const envParamsHack = require('./envParamsHack');
 // const doNotMangleNames = 'do_not_mangle_names';
 
 const preProc = 'less';
-const lessLoader = ExtractTextPlugin.extract(
+const lessLoader = extractTextPlugin.extract(
   // Use this if you don't want to add [name, local, hash...] to class names.
   // 'css?sourceMap!less?sourceMap' // names aren't mangled.
 
@@ -89,18 +89,6 @@ module.exports = {
   // https://stackoverflow.com/questions/30568796/how-to-store-configuration-file-and-read-it-using-react
   // https://stackoverflow.com/questions/36065832/webpack-include-configuration-file-as-external-resource?noredirect=1#comment59778282_36065832
   externals: {
-    // config: JSON.stringify({
-    //   // If true, prod_test_fixture_backend will be used.
-    //   // If true, webpack dev server will not have access to
-    //   //   the backend which is typically configured at port 5000.
-    //   //   The webpack dev server is listening on port 8080.
-    //   production,
-    //   prod_test_fixture_backend: 'http://localhost:5000',
-
-    //   // backend: 'https://snapshizzy.herokuapp.com',
-    //   backend: 'http://localhost:5000',
-    // }),
-
     cheerio: 'window',
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true,
@@ -134,7 +122,7 @@ module.exports = {
       //   loader: 'css?sourceMap!less?sourceMap', },
 
       // // ... temporary (???) for rc-slider...
-      // { test: /\.css$/, loader: ExtractTextPlugin.extract('css') },
+      // { test: /\.css$/, loader: extractTextPlugin.extract('css') },
 
       // ... temporary (???) for semantic-ui-css, rc-slider, others...
       {
@@ -142,15 +130,15 @@ module.exports = {
         test: /(semantic\-ui\-css|rc-slider).+?\.css$/,
         // include key originally not present.
         // include: [nodeModulesDir],
-        loader: ExtractTextPlugin.extract('css'),
+        loader: extractTextPlugin.extract('css'),
       },
 
-      // ... if it breaks Semantic UI CSS and others, just use ExtractTextPlugin.extract('css').
+      // ... if it breaks Semantic UI CSS and others, just use extractTextPlugin.extract('css').
       {
         test: /\.css$/,
         exclude: /node_modules/,
         include: [srcDir],
-        loader: ExtractTextPlugin.extract(
+        loader: extractTextPlugin.extract(
           'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
         ),
       },
@@ -167,6 +155,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
 
-    new ExtractTextPlugin('bundle.css', { allChunks: true }),
+    new extractTextPlugin('bundle.css', { allChunks: true }),
   ],
 };
