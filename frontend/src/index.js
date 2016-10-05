@@ -7,7 +7,7 @@ import ReduxThunk from 'redux-thunk';
 
 import { AppContainer } from 'react-hot-loader';
 
-import './debug';
+import './custom_debug';
 
 import App from './components/app';
 import rootReducer from './reducers';

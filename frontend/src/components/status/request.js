@@ -7,10 +7,6 @@ const RequestStatus = (props) => {
   const { status } = props;
   const { error } = status;
 
-  // const error = {
-  //   message: 'Test stub error obj\nLine 2 of test stub error obj'
-  // };
-
   if (error) {
     info(error, 'ERROR...');
 

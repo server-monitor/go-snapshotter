@@ -6,9 +6,9 @@ import { shallow } from 'enzyme';
 import reactTestUtils from 'react-addons-test-utils';
 import jsxToString from 'jsx-to-string';
 
-// import snapshotsFixture from './snapshots_fixture';
+import snapshotsFixture from './snapshots_fixture';
 
-// import { info } from '../../src/debug';
+import { info } from '../../src/custom_debug';
 // import { info, getConfig } from '../../src/debug';
 
 export function renderReactElement(rElement, options = null) {
@@ -34,12 +34,12 @@ export function shouldEqual(element) {
   return `should equal "${jsxString}"`;
 }
 
-// global.info = info;
+global.info = info;
 // global.getConfig = getConfig;
 
 global.SpecHelper = {
   renderReactElement,
   jsxToString,
   shouldEqual,
-  // snapshotsFixture,
+  snapshotsFixture,
 };

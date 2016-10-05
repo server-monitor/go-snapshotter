@@ -1,39 +1,43 @@
-describe('PENDING: import ... from \'stardust\' in target file', () => {
-  it('should pass', (done) => {
-    expect(1).to.eql(1);
-    done();
+
+import React from 'react';
+import { expect } from 'chai';
+
+import { Grid, Card } from 'stardust';
+
+/* eslint-disable import/no-unresolved, import/extensions */
+import SnapshotIndex from 'components/snapshot/index';
+import PictureIndex from 'components/snapshot/picture/index';
+import ControlIndex from 'components/snapshot/control/index';
+import MetaDataIndex from 'components/snapshot/meta_data/index';
+/* eslint-enable */
+
+describe('Snapshot <SnapshotIndex ... />', () => {
+  const { Column } = Grid;
+  const { shouldEqual, renderReactElement } = SpecHelper;
+
+  const expectedElement = (
+    <Column mobile={8} tablet={6} computer={5} largeScreen={4}>
+      <Card>
+        <PictureIndex />
+        <ControlIndex />
+        <MetaDataIndex />
+      </Card>
+    </Column>
+  );
+
+  const actual = renderReactElement(
+    <SnapshotIndex
+      key={10}
+      id={10}
+      url="https://coboltran.com"
+      picture={{}}
+      title="I don't know"
+      meta={{}}
+      removeSnapshot={() => {}}
+    />,
+  );
+
+  it(shouldEqual(expectedElement), () => {
+    expect(actual).to.eql(expectedElement);
   });
 });
-
-// import React from 'react';
-// import { expect } from 'chai';
-
-// import { Grid, Card } from 'stardust';
-
-// describe('Snapshot <SnapshotIndex ... />', () => {
-//   const { Column } = Grid;
-
-//   const { inferImport, shouldEqual, renderReactElement } = SpecHelper;
-//   // Same class name hack...
-//   // inferImport();
-//   const imports = inferImport('picture/index', 'control/index', 'meta_data/index');
-//   const [SnapshotIndex, PictureIndex, ControlIndex, MetaDataIndex] = imports;
-
-//   const expectedElement = (
-//     <Column mobile={8} tablet={5} computer={4} largeScreen={3}>
-//       <Card>
-//         <PictureIndex />
-//         <ControlIndex />
-//         <MetaDataIndex />
-//       </Card>
-//     </Column>
-//   );
-
-//   const actual = renderReactElement(
-//     <SnapshotIndex />,
-//   );
-
-//   it(shouldEqual(expectedElement), () => {
-//     expect(actual).to.eql(expectedElement);
-//   });
-// });

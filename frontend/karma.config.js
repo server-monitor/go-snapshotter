@@ -2,6 +2,8 @@
 const argv = require('yargs').argv;
 const path = require('path');
 
+const env = require('./env');
+
 // const extractTextPlugin = require('extract-text-webpack-plugin');
 
 // const preProc = 'less';
@@ -81,7 +83,14 @@ module.exports = (config) => {
         root: path.resolve(__dirname, './src'),
 
         // allow us to avoid including extension name
-        extensions: ['', '.js', '.jsx'],
+        extensions: [
+          '',
+          '.js',
+          '.jsx',
+
+          // https://github.com/airbnb/enzyme/issues/309
+          '.json'
+        ],
 
         // required for enzyme to work properly
         alias: {
@@ -95,6 +104,9 @@ module.exports = (config) => {
         ],
         // run babel loader for our tests
         loaders: [
+          // https://github.com/airbnb/enzyme/issues/309
+          { test: /\.json$/, loader: 'json' },
+
           { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },
 
           // !!HACK!!
@@ -123,10 +135,16 @@ module.exports = (config) => {
       },
       // required for enzyme to work properly
       externals: {
-        jsdom: 'window',
-        cheerio: 'window',
+        // jsdom: 'window',
+
+        // https://github.com/airbnb/enzyme/issues/309
+        // cheerio: 'window',
+
         'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': 'window',
+
+        // https://github.com/airbnb/enzyme/blob/master/docs/guides/karma.md
+        'react/lib/ReactContext': true,
+        // 'react/lib/ReactContext': 'window',
 
         // !!For... "enzyme... Error: Cannot resolve module 'react/addons'!!"
         // Error doesn't stop testing however you won't get the status...
@@ -153,6 +171,11 @@ module.exports = (config) => {
       'karma-sourcemap-loader'
     ],
 
-    context: path.resolve(__dirname, 'src')
+    context: path.resolve(__dirname, 'src'),
+
+    urlRoot: env.backend,
+    proxies: {
+      '/': env.backend
+    }
   });
 };

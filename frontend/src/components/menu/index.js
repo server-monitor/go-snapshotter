@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Grid } from 'stardust';
 import { Input, Label, Menu } from 'stardust';
 
 import style from './index.less';
