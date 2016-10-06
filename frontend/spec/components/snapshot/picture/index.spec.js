@@ -16,11 +16,6 @@ describe('<Picture ... />', () => {
   const url = 'https://elixirlang.org';
 
   const expectedElement = (
-    // Used to be ...
-    // <div className='picture_container'>
-    // Changed to ...=undefined because localized CSS => actual = undef...
-    // Watch out for className, you may have to change to actual value now
-    //   if using Karma.
     <div className={style.picture_container}>
       <Image
         src={picture.path}

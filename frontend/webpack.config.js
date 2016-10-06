@@ -8,7 +8,7 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const env = require('./env');
+const base = require('./base.config');
 
 // TODO...
 // const doNotMangleNames = 'do_not_mangle_names';
@@ -33,18 +33,12 @@ const lessLoader = ExtractTextPlugin.extract(
   // modules&importLoaders=1&localIdentName
 );
 
-const srcDir = path.resolve(__dirname, 'src');
+const srcDir = base.srcDir;
 const wwwDir = path.resolve(__dirname, 'www');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
   context: srcDir,
-
-  // context: path.join(__dirname, 'src'),
-  // entry: [
-  //   'babel-polyfill',
-  //   './index.js',
-  // ],
 
   entry: [
     // I don't know about these two. HMR seems to work without them.
@@ -60,26 +54,19 @@ module.exports = {
 
   output: {
     path: wwwDir,
-    // path: path.join(__dirname, 'www'),
     filename: 'bundle.js',
     // publicPath: 'http://localhost:8080/www',
   },
 
-  // Apparently, some options are available for config here and some are not. STJS.
+  // Apparently, some options are available for config here and some are not.
   devServer: {
     hot: true,
     inline: true,
     historyApiFallback: true,
     contentBase: wwwDir,
-    // contentBase: path.join(__dirname, 'www'),
     // port: 8081,
 
-    proxy: {
-      '*': env.backend,
-      // OR...
-      // '*': env.prod_test_fixture_backend
-      // '*': 'http://localhost:5000'
-    },
+    proxy: { '*': base.backend }
   },
 
   // File/line number info missing if this is not enabled.
@@ -87,14 +74,12 @@ module.exports = {
 
   resolveLoader: {
     root: [
-      nodeModulesDir,
-      // path.join(__dirname, 'node_modules'),
+      nodeModulesDir
     ],
   },
   resolve: {
     root: [
       nodeModulesDir,
-      // path.join(__dirname, 'node_modules'),
     ],
     extensions: ['', '.js', '.jsx'],
   },
@@ -108,17 +93,7 @@ module.exports = {
   },
 
   module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        include: [srcDir],
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'react'],
-        },
-      },
-
+    loaders: base.loaders.concat([
       {
         test: /\.less$/,
         exclude: /node_modules/,
@@ -126,20 +101,8 @@ module.exports = {
         loader: lessLoader,
       },
 
-      // // TODO, less regular and hack, stricter scoping...
-      // { test: /\.less$/,
-      //   exclude: /(node_modules|do_not_mangle_names)/,
-      //   loader: lessLoader, },
-      // { test: /do_not_mangle_names.*\.less$/,
-      //   exclude: /node_modules/,
-      //   loader: 'css?sourceMap!less?sourceMap', },
-
-      // // ... temporary (???) for rc-slider...
-      // { test: /\.css$/, loader: ExtractTextPlugin.extract('css') },
-
-      // ... temporary (???) for semantic-ui-css, rc-slider, others...
+      // ... for semantic-ui-css, rc-slider, others imported from our files...
       {
-        // test: /\.css$/,
         test: /(semantic\-ui\-css|rc-slider).+?\.css$/,
         // include key originally not present.
         // include: [nodeModulesDir],
@@ -155,14 +118,7 @@ module.exports = {
           'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
         ),
       },
-
-      // { test: /\.(woff|png|jpg|gif)$/, loader: 'url-loader?limit=10000' },
-      // ... add woff2, svg, eot, ttf => for Semantic UI
-      { test: /\.(woff|woff2|png|jpg|gif|svg|eot|ttf)$/, loader: 'url-loader?limit=10000' },
-
-      // ???
-      // { test: /\.(eot|svg|ttf|woff|woff2)$/, exclude: /node_modules/, loader: "file" },
-    ],
+    ]),
   },
 
   plugins: [
