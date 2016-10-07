@@ -1,57 +1,24 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import ReduxThunk from 'redux-thunk';
-
 import { AppContainer } from 'react-hot-loader';
 
+// Is there a better way of importing this for Stardust?
+import 'semantic-ui-css/semantic.css';
+
+// DEBUG tools, remove later.
 import './custom_debug';
 
-import App from './components/app';
-import rootReducer from './reducers';
-
+// Must be imported after Semantic UI CSS.
 import './index.less';
 
-import reduxDevHotReload from './store/reduxDevHotReload';
+import App from './components/app';
 
-const store = reduxDevHotReload();
-// const store = createStore(
-//   rootReducer,
-//   applyMiddleware(ReduxThunk)
-// );
+import configureStore from './store/configureStore';
 
-// START: DUMMY, WORKS...
-// const Dumdum = require('./dumdum').default;
-
-// // render(
-// //   <Dumdum />,
-// //   document.getElementById('app')
-// // );
-
-// render(
-//   <AppContainer>
-//     <Dumdum />
-//   </AppContainer>,
-//   document.getElementById('app')
-// );
-
-// if (module.hot) {
-//   module.hot.accept('./dumdum', () => {
-//     /* eslint-disable global-require */
-//     const DCont = require('./dumdum').default;
-//     /* eslint-enable */
-
-//     render(
-//       <AppContainer>
-//         <DCont />
-//       </AppContainer>,
-//       document.getElementById('app')
-//     );
-//   });
-// }
-// END: DUMMY
+const store = configureStore();
+const mountPointID = 'app';
 
 render(
   <AppContainer>
@@ -59,7 +26,7 @@ render(
       <App />
     </Provider>
   </AppContainer>,
-  document.getElementById('app')
+  document.getElementById(mountPointID)
 );
 
 if (module.hot) {
@@ -74,15 +41,7 @@ if (module.hot) {
           <HotApp />
         </Provider>
       </AppContainer>,
-      document.getElementById('app')
+      document.getElementById(mountPointID)
     );
   });
 }
-
-// Original
-// render(
-//   <Provider store={store}>
-//     <App />
-//   </Provider>,
-//   document.getElementById('app')
-// );

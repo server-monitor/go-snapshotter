@@ -2,8 +2,11 @@
 // I don't know..., check if browser.
 // Node has process.env => keys.length > 0 defined.
 function browserContext() {
-  if (typeof process === 'undefined') return true;
-  return (Object.keys(process.env).length === 0) && (process.env.constructor === Object);
+  if (typeof window === 'undefined') return false;
+  return true;
+
+  // if (typeof process === 'undefined') return true;
+  // return (Object.keys(process.env).length === 0) && (process.env.constructor === Object);
 }
 
 function info(msg, titleArg = '') {
@@ -29,12 +32,14 @@ function info(msg, titleArg = '') {
 //   }
 // }
 
-if (typeof module !== 'undefined') {
-  module.exports = { info };
-}
+// if (typeof module !== 'undefined') {
+//   module.exports = { info };
+// }
 
 // I don't know..., check if browser.
 // Node has process defined.
 if (browserContext()) {
   window.info = info;
+} else {
+  module.exports = { info };
 }

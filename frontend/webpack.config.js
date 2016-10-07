@@ -124,5 +124,8 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('bundle.css', { allChunks: true }),
+    new webpack.DefinePlugin({
+      __ENV__: { production: base.production }
+    }),
   ],
 };

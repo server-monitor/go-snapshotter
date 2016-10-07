@@ -6,6 +6,8 @@ import Picture from './picture';
 import Control from './control';
 import MetaData from './meta_data';
 
+import style from './index.less';
+
 const { Column } = Grid;
 
 export default class SnapshotIndex extends React.Component {
@@ -19,7 +21,7 @@ export default class SnapshotIndex extends React.Component {
   render() {
     return (
       <Column mobile={8} tablet={6} computer={5} largeScreen={4}>
-        <Card>
+        <Card className={style.locCard}>
           <Picture />
           <Control />
           <MetaData />

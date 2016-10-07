@@ -5,10 +5,10 @@ if (
   /* eslint-enable */
 ) {
   /* eslint-disable global-require */
-  module.exports = require('./app.production.js');
+  module.exports = require('./store.production');
   /* eslint-enable */
 } else {
   /* eslint-disable global-require */
-  module.exports = require('./app.development.js');
+  module.exports = require('./store.development');
   /* eslint-enable */
 }

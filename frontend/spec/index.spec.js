@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom';
 import { expect } from 'chai';
 
 // ...
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import { persistState } from 'redux-devtools';
+
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
@@ -14,12 +16,20 @@ import * as Enzyme from 'enzyme';
 /* eslint-disable import/no-unresolved, import/extensions */
 import App from 'components/app';
 import rootReducer from 'reducers';
+import DevTools from 'containers/DevTools';
 /* eslint-enable */
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(ReduxThunk)
+const enhancer = compose(
+  applyMiddleware(ReduxThunk),
+  DevTools.instrument(),
+  persistState(
+    window.location.href.match(
+      /[?&]debug_session=([^&#]+)\b/
+    )
+  )
 );
+
+const store = createStore(rootReducer, enhancer);
 
 describe('<App ... /> (smoke check)', () => {
   it('should render without crashing', () => {

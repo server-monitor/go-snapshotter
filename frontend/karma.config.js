@@ -2,26 +2,37 @@
 // http://spencerdixon.com/blog/test-driven-react-tutorial.html
 
 const argv = require('yargs').argv;
+
 const base = require('./base.config');
+const injectGlobals = require('./spec/inject_globals');
 
 module.exports = (config) => {
   config.set({
     browsers: ['PhantomJS'],
     singleRun: !argv.watch,
     frameworks: ['mocha', 'chai'],
-    reporters: ['spec', 'notify'],
+
+    reporters: [
+      'mocha',
+      // 'spec',
+      'notify'
+    ],
 
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
 
       // ...
+      injectGlobals,
       './spec/helpers/utilities.js',
       './spec/**/*.spec.js'
     ],
 
     preprocessors: {
-      './spec/**/*.js': ['webpack', 'sourcemap']
+      './spec/**/*.js': [
+        'webpack',
+        'sourcemap',
+      ],
     },
 
     webpack: {
@@ -107,9 +118,12 @@ module.exports = (config) => {
       'karma-chai',
       'karma-webpack',
       'karma-phantomjs-launcher',
-      'karma-spec-reporter',
+
+      // 'karma-spec-reporter',
+      'karma-mocha-reporter',
       'karma-notify-reporter',
-      'karma-sourcemap-loader'
+
+      'karma-sourcemap-loader',
     ],
 
     context: base.srcDir,

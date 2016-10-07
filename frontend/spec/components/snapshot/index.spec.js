@@ -9,6 +9,7 @@ import SnapshotIndex from 'components/snapshot/index';
 import PictureIndex from 'components/snapshot/picture/index';
 import ControlIndex from 'components/snapshot/control/index';
 import MetaDataIndex from 'components/snapshot/meta_data/index';
+import style from 'components/snapshot/index.less';
 /* eslint-enable */
 
 describe('Snapshot <SnapshotIndex ... />', () => {
@@ -17,7 +18,7 @@ describe('Snapshot <SnapshotIndex ... />', () => {
 
   const expectedElement = (
     <Column mobile={8} tablet={6} computer={5} largeScreen={4}>
-      <Card>
+      <Card className={style.locCard}>
         <PictureIndex />
         <ControlIndex />
         <MetaDataIndex />
