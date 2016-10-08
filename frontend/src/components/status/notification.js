@@ -49,12 +49,6 @@ export default class notificationWrapper extends Component {
   }
 
   render() {
-    // After a few sec of first run of testing...
-    //   Warning: Exception thrown by hook while handling onSetChildren:
-    //   Invariant Violation: Expected onBeforeMountComponent() parent and
-    //   onSetChildren() to be consistent (13 has parents 0 and 12).
-    //   On onDismiss={notification...} line
-
     return (
       <div className="status_notification">
         <NotificationStack
