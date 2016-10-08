@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import snapshots from './snapshots';
 import status from './status';
+import menu from './menu';
 
 const rootReducer = combineReducers({
   snapshots,
-  status,
+  menu,
+  status
 });
 
 export default rootReducer;

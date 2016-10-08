@@ -1,11 +1,11 @@
-import React from 'react';
-import { Input, Label, Menu } from 'stardust';
+import React, { PropTypes } from 'react';
 
-import style from './index.less';
+import Hidden from './hidden';
+import Shown from './shown';
 
 export default class MenuIndex extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { activeItem: 'login' };
     this.handleItemClick = this.handleItemClick.bind(this);
   }
@@ -15,27 +15,23 @@ export default class MenuIndex extends React.Component {
   }
 
   render() {
-    const { activeItem } = this.state;
+    const { menu, hideMenu, showMenu } = this.props;
+    if (menu.visible) {
+      return (
+        <Shown
+          activeItem={this.state.activeItem}
+          hideMenu={hideMenu}
+          handleItemClick={this.handleItemClick}
+        />
+      );
+    }
 
-    return (
-      <Menu vertical className={style.menu}>
-        <Menu.Item name="login" active={activeItem === 'login'} onClick={this.handleItemClick}>
-          Login
-        </Menu.Item>
-
-        <Menu.Item name="new" active={activeItem === 'new'} onClick={this.handleItemClick}>
-          <Label color="teal">14</Label>
-          New since 4 days ago
-        </Menu.Item>
-
-        <Menu.Item name="updates" active={activeItem === 'updates'} onClick={this.handleItemClick}>
-          <Label>4</Label>
-          Updates
-        </Menu.Item>
-        <Menu.Item>
-          <Input className="icon" icon="search" placeholder="Search mail..." />
-        </Menu.Item>
-      </Menu>
-    );
+    return <Hidden showMenu={showMenu} />;
   }
 }
+
+MenuIndex.propTypes = {
+  showMenu: PropTypes.func.isRequired,
+  menu: PropTypes.shape().isRequired,
+  hideMenu: PropTypes.func.isRequired,
+};

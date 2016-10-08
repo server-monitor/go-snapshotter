@@ -36878,11 +36878,9 @@ html.ios body {
 
 /*******************************
          Site Overrides
-*******************************/.less_index__menu___2Orb4 {
-  position: absolute;
-  top: 5%;
-  left: 2%;
-  z-index: 2;
+*******************************/body {
+  margin: auto;
+  padding: 24px 14px 10px 20px;
 }
 .less_index__picture_container___34HNk {
   overflow: hidden;
@@ -37236,12 +37234,19 @@ html.ios body {
   color: white;
   background-color: rgba(10, 10, 10, 0.8);
 }
+.less_index__locCard___3ez-t {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.less_index__menu___2Orb4 {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  z-index: 4;
+}
 .status_notification .notification-list .notification-bar-active {
   z-index: 20;
   border: solid 1px white;
-}
-body {
-  padding: 24px 24px 10px;
 }
 
 /*# sourceMappingURL=bundle.css.map*/

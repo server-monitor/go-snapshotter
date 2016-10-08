@@ -1,21 +1,21 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { setRequestStatus } from '../../actions';
-import StatusComponent from '../../components/status';
+import { showMenu, hideMenu } from '../../actions';
+import MenuComponent from '../../components/menu';
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
-    { setRequestStatus },
+    { showMenu, hideMenu },
     dispatch
   );
 
 const mapStateToProps = state => ({
-  status: state.status,
+  menu: state.menu,
 });
 
-const StatusContainer = connect(
+const MenuContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(StatusComponent);
+)(MenuComponent);
 
-export default StatusContainer;
+export default MenuContainer;

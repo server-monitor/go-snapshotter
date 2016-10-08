@@ -3,7 +3,8 @@ import { expect } from 'chai';
 
 /* eslint-disable import/no-unresolved, import/extensions */
 import App from 'components/app';
-import Menu from 'components/menu/index';
+
+import Menu from 'containers/menu/index';
 import SnapshotList from 'containers/snapshot/list';
 import Status from 'containers/status/index';
 import DevTools from 'containers/DevTools';

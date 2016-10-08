@@ -74,14 +74,14 @@
   "main": "webpack.config.js",
   "scripts": {
     "lint": "eslint --config /main/system/javascript/DOT.eslintrc.yml",
-    "gensymlinks": "mkdir www 2>/dev/null; cd www && for file in index.html debug.js; do ln -sf \"../src/$file\"; done",
+    "gensymlinks": "mkdir www 2>/dev/null; cd www && for file in index.html; do ln -sf \"../src/$file\"; done",
     "prestart": "npm run gensymlinks",
     "start": "webpack-dev-server --progress --watch --display-error-details --display-cached",
     "start:prod": "APP_ENV=production webpack-dev-server --progress --watch --display-error-details --display-cached",
     "test:once": "node_modules/.bin/karma start karma.config.js",
     "test": "npm run test:once -- --watch",
     "test:prod": "APP_ENV=production npm run test:once -- --watch",
-    "precompile": "mkdir www 2>/dev/null; cd www && for file in index.html debug.js; do /bin/cp --remove-destination \"../src/$file\" .; done",
+    "precompile": "mkdir www 2>/dev/null; cd www && for file in index.html; do /bin/cp --remove-destination \"../src/$file\" .; done",
     "compile": "APP_ENV=production webpack",
     "postcompile": "notify-send --expire-time=10000 'npm compile done'"
   },

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Menu from '../components/menu';
 import SnapshotList from '../containers/snapshot/list';
+import Menu from '../containers/menu';
 import Status from '../containers/status';
 
 import DevTools from '../containers/DevTools';
